@@ -22,7 +22,7 @@ class design{
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
        vc.present(alert, animated: true, completion: nil)
-     vc.present(ViewController(), animated: true, completion: nil)
+     vc.present(CarsViewController(), animated: true, completion: nil)
 
     }
     

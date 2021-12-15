@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8811360227687A68004C421F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8811360127687A68004C421F /* FirebaseMessaging */; };
 		881C10C42764AD7F00A8FB19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10C32764AD7F00A8FB19 /* AppDelegate.swift */; };
 		881C10C62764AD7F00A8FB19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10C52764AD7F00A8FB19 /* SceneDelegate.swift */; };
 		881C10C82764AD7F00A8FB19 /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10C72764AD7F00A8FB19 /* CarsViewController.swift */; };
@@ -21,11 +22,11 @@
 		881C10E32764DFB900A8FB19 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10E22764DFB900A8FB19 /* LoginViewController.swift */; };
 		881C10E52764DFCB00A8FB19 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10E42764DFCB00A8FB19 /* RegisterViewController.swift */; };
 		881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10E82764E00100A8FB19 /* AddCarViewController.swift */; };
-		881C10EE2764E0A000A8FB19 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10EC2764E0A000A8FB19 /* HeaderTableViewCell.swift */; };
-		881C10EF2764E0A000A8FB19 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881C10ED2764E0A000A8FB19 /* HeaderTableViewCell.xib */; };
+		881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10EC2764E0A000A8FB19 /* TableViewCell.swift */; };
 		881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */; };
 		881C10F427652E2900A8FB19 /* design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10F327652E2800A8FB19 /* design.swift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
+		88902D9E2767D99C00190883 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9D2767D99C00190883 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,11 +41,11 @@
 		881C10E22764DFB900A8FB19 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		881C10E42764DFCB00A8FB19 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		881C10E82764E00100A8FB19 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
-		881C10EC2764E0A000A8FB19 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
-		881C10ED2764E0A000A8FB19 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
+		881C10EC2764E0A000A8FB19 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		881C10F327652E2800A8FB19 /* design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = design.swift; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		88902D9D2767D99C00190883 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8811360227687A68004C421F /* FirebaseMessaging in Frameworks */,
 				881C10DD2764B74500A8FB19 /* FirebaseCrashlytics in Frameworks */,
 				881C10D92764B74500A8FB19 /* FirebaseAnalytics in Frameworks */,
 				881C10DF2764B74500A8FB19 /* FirebaseDatabase in Frameworks */,
@@ -63,12 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8811360027687A68004C421F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		881C10B72764AD7F00A8FB19 = {
 			isa = PBXGroup;
 			children = (
 				881C10F327652E2800A8FB19 /* design.swift */,
+				88902D9D2767D99C00190883 /* Model.swift */,
 				881C10C22764AD7F00A8FB19 /* SAB-Cars */,
 				881C10C12764AD7F00A8FB19 /* Products */,
+				8811360027687A68004C421F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,12 +96,11 @@
 			children = (
 				881C10C32764AD7F00A8FB19 /* AppDelegate.swift */,
 				881C10C52764AD7F00A8FB19 /* SceneDelegate.swift */,
+				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
 				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
 				881C10F02764FB8600A8FB19 /* login */,
 				881C10C72764AD7F00A8FB19 /* CarsViewController.swift */,
 				881C10E82764E00100A8FB19 /* AddCarViewController.swift */,
-				881C10EC2764E0A000A8FB19 /* HeaderTableViewCell.swift */,
-				881C10ED2764E0A000A8FB19 /* HeaderTableViewCell.xib */,
 				881C10CC2764AD8000A8FB19 /* Assets.xcassets */,
 				881C10CE2764AD8000A8FB19 /* LaunchScreen.storyboard */,
 				881C10D12764AD8000A8FB19 /* Info.plist */,
@@ -131,6 +141,7 @@
 				881C10DC2764B74500A8FB19 /* FirebaseCrashlytics */,
 				881C10DE2764B74500A8FB19 /* FirebaseDatabase */,
 				881C10E02764B74500A8FB19 /* FirebaseFirestore */,
+				8811360127687A68004C421F /* FirebaseMessaging */,
 			);
 			productName = "SAB-Cars";
 			productReference = 881C10C02764AD7F00A8FB19 /* SAB-Cars.app */;
@@ -177,7 +188,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881C10EF2764E0A000A8FB19 /* HeaderTableViewCell.xib in Resources */,
 				881C10D02764AD8000A8FB19 /* LaunchScreen.storyboard in Resources */,
 				881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */,
 				881C10CD2764AD8000A8FB19 /* Assets.xcassets in Resources */,
@@ -192,11 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881C10EE2764E0A000A8FB19 /* HeaderTableViewCell.swift in Sources */,
+				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
 				88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */,
 				881C10E32764DFB900A8FB19 /* LoginViewController.swift in Sources */,
 				881C10E52764DFCB00A8FB19 /* RegisterViewController.swift in Sources */,
+				88902D9E2767D99C00190883 /* Model.swift in Sources */,
 				881C10C82764AD7F00A8FB19 /* CarsViewController.swift in Sources */,
 				881C10C42764AD7F00A8FB19 /* AppDelegate.swift in Sources */,
 				881C10C62764AD7F00A8FB19 /* SceneDelegate.swift in Sources */,
@@ -433,6 +444,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8811360127687A68004C421F /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 881C10D72764B74500A8FB19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		881C10D82764B74500A8FB19 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 881C10D72764B74500A8FB19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

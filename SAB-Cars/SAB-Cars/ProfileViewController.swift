@@ -7,10 +7,11 @@
 
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
-    @IBOutlet weak var name: UILabel!
+    
+    var db = Firestore.firestore()
     
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var gendr: UILabel!
@@ -20,11 +21,20 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var save: UIButton!
     @IBAction func saveButton(_ sender: Any) {
+        if ((usernameProfile.text!.count>3)&&(genderProfile.text!.count>3)&&(phoneProfile.text!.count == 10)){
+          let userId =  Auth.auth().currentUser!.uid
+            db.collection("users").addDocument(data: ["userName" : usernameProfile.text!,
+                                                      "phoneNumber":phoneProfile.text!,
+                                                      "gender":genderProfile.text!,
+                                                      "uid":userId])
+            performSegue(withIdentifier: "home", sender: self)
+        }else { design.useAlert(title: "Error", message: "please chek your info", vc: self)}
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         save.layer.cornerRadius = 10
         save.layer.borderWidth = 1
+        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
     func addProfile(){

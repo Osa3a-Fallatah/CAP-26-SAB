@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerButton(_ sender: UIButton) {
         if passwordTextField.text  == confirmTextField.text {
+            
           signUp()
     }else{ design.useAlert(title: "Failed to register", message: "Please check your password", vc: self) }
     }
