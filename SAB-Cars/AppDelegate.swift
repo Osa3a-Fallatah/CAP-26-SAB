@@ -2,15 +2,16 @@
 //  AppDelegate.swift
 //  SAB-Cars
 //
-//  Created by Osama folta on 07/05/1443 AH.
+//  Created by Osama folta on 13/05/1443 AH.
 //
-
-import UIKit
+import FirebaseCore
 import Firebase
-//import IQKeyboardManagerSwift
+import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

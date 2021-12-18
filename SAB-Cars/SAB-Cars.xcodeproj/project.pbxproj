@@ -25,6 +25,9 @@
 		881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10EC2764E0A000A8FB19 /* TableViewCell.swift */; };
 		881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */; };
 		881C10F427652E2900A8FB19 /* design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10F327652E2800A8FB19 /* design.swift */; };
+		88648581276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 88648580276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta */; };
+		88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648582276E277C0064BE93 /* CommentsViewController.swift */; };
+		88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648584276E4E660064BE93 /* ChatTableViewCell.swift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
 		88902D9E2767D99C00190883 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9D2767D99C00190883 /* Model.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +46,9 @@
 		881C10E82764E00100A8FB19 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
 		881C10EC2764E0A000A8FB19 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		881C10F327652E2800A8FB19 /* design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = design.swift; sourceTree = "<group>"; };
+		881C10F327652E2800A8FB19 /* design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = design.swift; path = ../design.swift; sourceTree = "<group>"; };
+		88648582276E277C0064BE93 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		88648584276E4E660064BE93 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ../ChatTableViewCell.swift; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		88902D9D2767D99C00190883 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +60,7 @@
 			files = (
 				8811360227687A68004C421F /* FirebaseMessaging in Frameworks */,
 				881C10DD2764B74500A8FB19 /* FirebaseCrashlytics in Frameworks */,
+				88648581276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				881C10D92764B74500A8FB19 /* FirebaseAnalytics in Frameworks */,
 				881C10DF2764B74500A8FB19 /* FirebaseDatabase in Frameworks */,
 				881C10E12764B74500A8FB19 /* FirebaseFirestore in Frameworks */,
@@ -75,8 +81,9 @@
 		881C10B72764AD7F00A8FB19 = {
 			isa = PBXGroup;
 			children = (
-				881C10F327652E2800A8FB19 /* design.swift */,
-				88902D9D2767D99C00190883 /* Model.swift */,
+				881C10C32764AD7F00A8FB19 /* AppDelegate.swift */,
+				881C10C52764AD7F00A8FB19 /* SceneDelegate.swift */,
+				88648587276E4F3F0064BE93 /* Model */,
 				881C10C22764AD7F00A8FB19 /* SAB-Cars */,
 				881C10C12764AD7F00A8FB19 /* Products */,
 				8811360027687A68004C421F /* Frameworks */,
@@ -94,13 +101,8 @@
 		881C10C22764AD7F00A8FB19 /* SAB-Cars */ = {
 			isa = PBXGroup;
 			children = (
-				881C10C32764AD7F00A8FB19 /* AppDelegate.swift */,
-				881C10C52764AD7F00A8FB19 /* SceneDelegate.swift */,
-				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
-				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
-				881C10F02764FB8600A8FB19 /* login */,
-				881C10C72764AD7F00A8FB19 /* CarsViewController.swift */,
-				881C10E82764E00100A8FB19 /* AddCarViewController.swift */,
+				88648586276E4EA20064BE93 /* View */,
+				88648588276E4F580064BE93 /* Controller */,
 				881C10CC2764AD8000A8FB19 /* Assets.xcassets */,
 				881C10CE2764AD8000A8FB19 /* LaunchScreen.storyboard */,
 				881C10D12764AD8000A8FB19 /* Info.plist */,
@@ -112,11 +114,41 @@
 		881C10F02764FB8600A8FB19 /* login */ = {
 			isa = PBXGroup;
 			children = (
+				881C10F327652E2800A8FB19 /* design.swift */,
 				88902D9B27678BDA00190883 /* ProfileViewController.swift */,
 				881C10E22764DFB900A8FB19 /* LoginViewController.swift */,
 				881C10E42764DFCB00A8FB19 /* RegisterViewController.swift */,
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		88648586276E4EA20064BE93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
+				88648584276E4E660064BE93 /* ChatTableViewCell.swift */,
+				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		88648587276E4F3F0064BE93 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				88902D9D2767D99C00190883 /* Model.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		88648588276E4F580064BE93 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				881C10C72764AD7F00A8FB19 /* CarsViewController.swift */,
+				881C10E82764E00100A8FB19 /* AddCarViewController.swift */,
+				88648582276E277C0064BE93 /* CommentsViewController.swift */,
+				881C10F02764FB8600A8FB19 /* login */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +174,7 @@
 				881C10DE2764B74500A8FB19 /* FirebaseDatabase */,
 				881C10E02764B74500A8FB19 /* FirebaseFirestore */,
 				8811360127687A68004C421F /* FirebaseMessaging */,
+				88648580276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = "SAB-Cars";
 			productReference = 881C10C02764AD7F00A8FB19 /* SAB-Cars.app */;
@@ -204,12 +237,14 @@
 			files = (
 				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
+				88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */,
 				88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */,
 				881C10E32764DFB900A8FB19 /* LoginViewController.swift in Sources */,
 				881C10E52764DFCB00A8FB19 /* RegisterViewController.swift in Sources */,
 				88902D9E2767D99C00190883 /* Model.swift in Sources */,
 				881C10C82764AD7F00A8FB19 /* CarsViewController.swift in Sources */,
 				881C10C42764AD7F00A8FB19 /* AppDelegate.swift in Sources */,
+				88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */,
 				881C10C62764AD7F00A8FB19 /* SceneDelegate.swift in Sources */,
 				881C10F427652E2900A8FB19 /* design.swift in Sources */,
 			);
@@ -473,6 +508,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 881C10D72764B74500A8FB19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		88648580276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 881C10D72764B74500A8FB19 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

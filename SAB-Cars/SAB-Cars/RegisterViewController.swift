@@ -11,14 +11,13 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
-   
+    
     @IBOutlet weak var buttonLayout: UIButton!
     
     @IBAction func registerButton(_ sender: UIButton) {
         if passwordTextField.text  == confirmTextField.text {
-            
-          signUp()
-    }else{ design.useAlert(title: "Failed to register", message: "Please check your password", vc: self) }
+            signUp()
+        }else{ design.useAlert(title: "Failed to register", message: "Please check your password", vc: self) }
     }
     
     override func viewDidLoad() {
@@ -27,9 +26,8 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
         buttonLayout.layer.cornerRadius = 10
         buttonLayout.layer.borderWidth = 1
-        
     }
-
+    
     func signUp(){
         let email = emailTextField.text!
         let pass = passwordTextField.text!
@@ -40,6 +38,13 @@ class RegisterViewController: UIViewController {
                 design.useAlert(title: "Error", message: error!.localizedDescription, vc: self)
             }
         }
-       
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }

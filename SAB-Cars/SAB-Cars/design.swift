@@ -9,7 +9,6 @@ import UIKit
 
 
 class design{
-    
     static func chageColore(_ view: UIView!){
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -19,12 +18,12 @@ class design{
         ]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
-  static  func useAlert( title:String, message:String , vc:UIViewController){
+    static  func useAlert( title:String, message:String , vc:UIViewController){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-       vc.present(alert, animated: true, completion: nil)
-     vc.present(CarsViewController(), animated: true, completion: nil)
-
+        vc.present(alert, animated: true, completion: nil)
+        vc.present(CarsViewController(), animated: true, completion: nil)
+        
     }
     
 }
