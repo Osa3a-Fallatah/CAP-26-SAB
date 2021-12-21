@@ -13,18 +13,18 @@ class ProfileViewController: UIViewController {
     
     var dbStore = Firestore.firestore()
   
-    @IBOutlet weak var usernameProfile: UITextField!
-    @IBOutlet weak var genderProfile: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var phoneProfile: UITextField!
     
     @IBOutlet weak var save: UIButton!
     @IBAction func saveButton(_ sender: Any) {
 
-        if ((usernameProfile.text!.count>3)&&(genderProfile.text!.count>3)&&(phoneProfile.text!.count == 10)){
+        if ((firstName.text!.count>3)&&(lastName.text!.count>3)&&(phoneProfile.text!.count == 10)){
             let userId =  Auth.auth().currentUser!.uid
-            dbStore.collection("users").document(userId).setData(["userName" : usernameProfile.text!,
+            dbStore.collection("users").document(userId).setData(["firstName" : firstName.text!,
                                                                  "phoneNumber":phoneProfile.text!,
-                                                                      "gender":genderProfile.text!,
+                                                                      "LastName":lastName.text!,
                                                                  // "uid":dbStore.collection("users").document(userId)
                                                                   "uid":userId
                                                                  ])

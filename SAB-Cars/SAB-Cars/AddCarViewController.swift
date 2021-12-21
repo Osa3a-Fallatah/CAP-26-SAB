@@ -24,7 +24,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var year: UITextField!
     @IBOutlet weak var brand: UITextField!
-    @IBOutlet weak var status: UITextField!
+    @IBOutlet weak var status: UITextView!
     @IBOutlet weak var gasType: UISegmentedControl!
     @IBOutlet weak var gearbox: UISegmentedControl!
     var newCar = Car()
@@ -45,13 +45,13 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         }))
         present(alart, animated: true, completion: nil)
         alart.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        addddd()
-      //  dbStore.collection("users").document(userId!).setData(["cars":[dbStore.collection("Cars").document()]], merge:true)
+       //addddd()
+//        dbStore.collection("users").document(userId!).setData(["cars":[dbStore.collection("Cars").wher .document()]], merge:true)
     }
-    
-    
+  
     @IBAction func save(_ sender: Any) {
-        newCar.addComment(newComment: Comment(id: "hellow", date: Date.now, message: "ok"))
+        //newCar.addComment(newComment: Comment(id: "hellow", date: Date.now, message: "ok"))
+        addcar()
     }
      
     override func viewDidLoad() {
@@ -78,6 +78,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         }
     }
     func addcar(){
+        
         dbStore.collection("Cars").addDocument(data: [
                 "userID":dbStore.collection("users").document(userId!), "mssege":dbStore.collection("Msg").document(userId!),
                 "brand": brand.text!,
@@ -96,7 +97,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
             }
     }
     func addddd(){
-        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual" , location: location.text!, status: status.text!, year: year.text!, price: price.text!, comments:[Comment(id: userId!, date: Date.now, message: "hello")])
+        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual" , location: location.text!, status: status.text!, year: year.text!, price: price.text!, comments:nil)
         do{
             let _ = try dbStore.collection("Cars").addDocument(from: newCar)}catch{
                 design.useAlert(title: "Document added", message: "ok", vc: self)
