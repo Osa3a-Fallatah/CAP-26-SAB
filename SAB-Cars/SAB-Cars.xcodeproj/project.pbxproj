@@ -28,11 +28,11 @@
 		88403D592770865D00496E7D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D582770865D00496E7D /* Car.swift */; };
 		88403D5B277086BE00496E7D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D5A277086BE00496E7D /* Comment.swift */; };
 		88403D5D2770870700496E7D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D5C2770870700496E7D /* User.swift */; };
+		88403D682771DD2A00496E7D /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D672771DD2A00496E7D /* testViewController.swift */; };
 		88648581276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 88648580276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta */; };
 		88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648582276E277C0064BE93 /* CommentsViewController.swift */; };
 		88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648584276E4E660064BE93 /* ChatTableViewCell.swift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
-		88902D9E2767D99C00190883 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9D2767D99C00190883 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,10 +53,10 @@
 		88403D582770865D00496E7D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 		88403D5A277086BE00496E7D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		88403D5C2770870700496E7D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		88403D672771DD2A00496E7D /* testViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
 		88648582276E277C0064BE93 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		88648584276E4E660064BE93 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ../ChatTableViewCell.swift; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		88902D9D2767D99C00190883 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +134,7 @@
 				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
 				88648584276E4E660064BE93 /* ChatTableViewCell.swift */,
 				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
+				88403D672771DD2A00496E7D /* testViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -141,7 +142,6 @@
 		88648587276E4F3F0064BE93 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				88902D9D2767D99C00190883 /* Model.swift */,
 				88403D5C2770870700496E7D /* User.swift */,
 				88403D582770865D00496E7D /* Car.swift */,
 				88403D5A277086BE00496E7D /* Comment.swift */,
@@ -247,6 +247,7 @@
 			files = (
 				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
+				88403D682771DD2A00496E7D /* testViewController.swift in Sources */,
 				88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */,
 				88403D5B277086BE00496E7D /* Comment.swift in Sources */,
 				88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */,
@@ -254,7 +255,6 @@
 				881C10E32764DFB900A8FB19 /* LoginViewController.swift in Sources */,
 				881C10E52764DFCB00A8FB19 /* RegisterViewController.swift in Sources */,
 				88403D5D2770870700496E7D /* User.swift in Sources */,
-				88902D9E2767D99C00190883 /* Model.swift in Sources */,
 				881C10C82764AD7F00A8FB19 /* CarsViewController.swift in Sources */,
 				881C10C42764AD7F00A8FB19 /* AppDelegate.swift in Sources */,
 				88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */,

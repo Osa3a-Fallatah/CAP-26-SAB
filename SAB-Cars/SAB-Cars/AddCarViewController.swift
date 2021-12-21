@@ -14,6 +14,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     
     let dbStore = Firestore.firestore()
     var camera = UIImagePickerController()
+    var dropList = UIPickerView()
+    var newCar = Car()
     let userId = Auth.auth().currentUser?.uid
    /*MARK: reference Type as Property Field in Firebase
     MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
@@ -27,7 +29,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var status: UITextView!
     @IBOutlet weak var gasType: UISegmentedControl!
     @IBOutlet weak var gearbox: UISegmentedControl!
-    var newCar = Car()
     
     @IBAction func uploadPhotos(_ sender: Any) {
         let alart = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -58,6 +59,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         super.viewDidLoad()
         design.chageColore(view)
         camera.delegate = self
+        dropList.delegate=self
+        dropList.dataSource=self
+        brand.inputView=dropList
         // Do any additional setup after loading the view.
         //   observeFirestoreDB()
     }
@@ -103,5 +107,24 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                 design.useAlert(title: "Document added", message: "ok", vc: self)
             }
     }
+    var List=["chrysler","honda","mercedes-benz","ram","ford","gmc","audi"
+    ,"subaru","rolls-royce", "porsche","bmw","volvo","lincoln","maserati"
+    ,"infiniti", "fiat","dodge","bentley","chevrolet","land-rover","mitsubishi"
+    ,"volkswagen","toyota","jeep","hyundai","cadillac","lexus","kia","mazda","nissan"]
 }
 
+extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+         List.count
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        brand.text! = List[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       return List[row]
+    }
+}

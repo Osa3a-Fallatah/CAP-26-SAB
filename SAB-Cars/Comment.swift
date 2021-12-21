@@ -12,4 +12,6 @@ struct Comment :Codable{
     var id :String=""
     var date : String=""
     var message:String=""
+    //    var commentOn:Car
+    //    var commentBy:User
 }
