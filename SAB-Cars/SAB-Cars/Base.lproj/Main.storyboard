@@ -99,11 +99,11 @@
             <objects>
                 <viewController storyboardIdentifier="homepage" id="1zv-Yn-x3h" customClass="CarsViewController" customModule="SAB_Cars" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sg3-yC-lRI">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="278" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HeU-x7-dHc">
-                                <rect key="frame" x="0.0" y="88" width="390" height="722"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="278" id="Hcl-Xo-52W" customClass="TableViewCell" customModule="SAB_Cars" customModuleProvider="target">
@@ -261,6 +261,10 @@
                             </barButtonItem>
                             <barButtonItem title="Item" id="iiP-JO-rEU">
                                 <color key="tintColor" systemColor="labelColor"/>
+                                <connections>
+                                    <action selector="profileButton:" destination="1zv-Yn-x3h" id="Vxn-0c-h67"/>
+                                    <segue destination="cVl-H2-ZAW" kind="show" id="f2s-e9-KYF"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -283,7 +287,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="150" translatesAutoresizingMaskIntoConstraints="NO" id="OaT-4S-TdD">
-                                <rect key="frame" x="15" y="103" width="360" height="150"/>
+                                <rect key="frame" x="15" y="59" width="360" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4Pa-kH-rE5">
                                         <rect key="frame" x="0.0" y="0.0" width="127" height="150"/>
@@ -370,7 +374,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZPC-c6-sAk">
-                                <rect key="frame" x="45" y="288" width="300" height="100"/>
+                                <rect key="frame" x="45" y="244" width="300" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Cq2-u3-cxq"/>
@@ -498,16 +502,16 @@
         <!--Profile View Controller-->
         <scene sceneID="w25-2K-yHV">
             <objects>
-                <viewController id="cVl-H2-ZAW" customClass="ProfileViewController" customModule="SAB_Cars" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="cVl-H2-ZAW" customClass="ProfileViewController" customModule="SAB_Cars" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qn4-bL-sNk">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="SL7-hG-pTI">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                             </imageView>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-aY-yMS">
-                                <rect key="frame" x="117" y="633" width="156" height="38"/>
+                                <rect key="frame" x="117" y="579" width="156" height="38"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -520,7 +524,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="DyS-6J-6aG">
-                                <rect key="frame" x="30" y="338" width="330" height="205"/>
+                                <rect key="frame" x="30" y="250" width="330" height="205"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="NAME" borderStyle="roundedRect" placeholder="firstName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="499-sb-szD">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="34"/>
@@ -547,7 +551,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dta-v8-E2c">
-                                <rect key="frame" x="76" y="105.66666666666667" width="214" height="178.33333333333331"/>
+                                <rect key="frame" x="76" y="17.666666666666657" width="214" height="178.33333333333331"/>
                                 <color key="tintColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="173.5" id="28h-W8-2A6"/>
@@ -591,11 +595,11 @@
             <objects>
                 <viewController storyboardIdentifier="carChat" id="nxI-Pg-yt1" customClass="CommentsViewController" customModule="SAB_Cars" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8LO-4O-ZQE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="110" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2vZ-te-hxc">
-                                <rect key="frame" x="0.0" y="88" width="390" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="701"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" id="Y3Z-nq-zqV" customClass="ChatTableViewCell" customModule="SAB_Cars" customModuleProvider="target">
@@ -672,7 +676,7 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mh8-GF-JMz">
-                                <rect key="frame" x="10" y="755" width="280" height="55"/>
+                                <rect key="frame" x="10" y="701" width="280" height="55"/>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="LyD-08-ad3"/>
@@ -681,7 +685,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKF-hR-QJb">
-                                <rect key="frame" x="290" y="755" width="100" height="55"/>
+                                <rect key="frame" x="290" y="701" width="100" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="6kt-N5-A2y"/>
                                     <constraint firstAttribute="width" constant="100" id="pI1-yt-qzs"/>
@@ -709,7 +713,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RRf-ad-CPk">
-                        <barButtonItem key="rightBarButtonItem" title="log" id="cEx-LO-2xz"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="cEx-LO-2xz">
+                            <connections>
+                                <action selector="clearChat:" destination="nxI-Pg-yt1" id="5To-2w-At9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="2vZ-te-hxc" id="r0l-Hs-trF"/>
@@ -718,7 +726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50J-eN-ySy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1600" y="718.00947867298578"/>
+            <point key="canvasLocation" x="1589" y="761"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="4ts-Ph-Kr1">
@@ -743,6 +751,10 @@
                             <constraint firstItem="X5J-E7-RlR" firstAttribute="leading" secondItem="NUX-63-owF" secondAttribute="leading" id="ziS-IS-KOS"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="organize" id="2Ol-g2-Z4g"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textout" destination="X5J-E7-RlR" id="b9c-tc-SBD"/>
                     </connections>
@@ -772,12 +784,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="f2s-e9-KYF"/>
         <segue reference="uzj-pi-Efu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="128" height="86"/>
-        <image name="car" catalog="system" width="128" height="93"/>
         <image name="car" width="640" height="1136"/>
+        <image name="car" catalog="system" width="128" height="93"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="power" catalog="system" width="128" height="124"/>
         <namedColor name="AccentColor">
@@ -787,7 +800,7 @@
             <color red="0.36500000953674316" green="0.59200000762939453" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Color-2">
-            <color red="0.36470589040000001" green="0.59215688710000003" blue="0.74509805439999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.36500000953674316" green="0.59200000762939453" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -14,3 +14,4 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var lableForName: UILabel!
     @IBOutlet weak var lableForDate: UILabel!
 }
+

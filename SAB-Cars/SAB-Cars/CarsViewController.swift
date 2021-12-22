@@ -15,6 +15,9 @@ class CarsViewController: UIViewController {
     var cars = [Car]()
     
     
+    @IBAction func updateProfile(_ sender: Any) {
+        
+    }
     
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
@@ -37,7 +40,7 @@ class CarsViewController: UIViewController {
         getUserName()
     }
     override func viewWillAppear(_ animated: Bool) {
-        getInfo()
+        table.reloadData()
     }
 }
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
@@ -64,7 +67,6 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indx = cars[indexPath.row].id
         print(indx)
-        //performSegue(withIdentifier: "carChat", sender: self)
         let showvc = (storyboard?.instantiateViewController(withIdentifier: "carChat"))! as! CommentsViewController
         showvc.chatRoom = indx
         navigationController?.pushViewController(showvc, animated: true)
@@ -72,13 +74,12 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     
     func getInfo(){
         let car = dbStore.collection("Cars")
-        
-        car.getDocuments() { (querySnapshot, err) in
+        car.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+                    // print("\(document.documentID) => \(document.data())")
                     let values = document.data()
                     
                     let id = document.documentID
@@ -94,7 +95,8 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                     
                     self.cars.append(car)
                     
-                }; DispatchQueue.main.async {
+                }
+                DispatchQueue.main.async {
                     self.table.reloadData()
                 }}
         }
@@ -106,17 +108,15 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
             .getDocuments { snapshot, err in
                 guard let snapshot = snapshot else { return }
                 let data = snapshot.documents.first!.data()
-                let f = (data["firstName"]!) as! String
-                let l = (data["LastName"]!) as! String
-                
+                let FN = (data["firstName"]!) as! String
+                let LN = (data["LastName"]!) as! String
                 //                  for doc in snapshot.documents {
                 //                   print(doc.data())    }
                 //                self.showname.title = data["userName"]! as? String
-                self.showname.title = "▪️\(f) \(l)"
-                
+                self.showname.title = "⚙️ \(FN) \(LN)"
             }
     }
-
+    
     //MARK: not working function
     func fetchData(){
         dbStore.collection("Cars").addSnapshotListener { snapshot , err  in

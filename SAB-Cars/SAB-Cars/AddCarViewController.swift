@@ -9,6 +9,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import UIKit
 import SwiftUI
+import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -19,7 +20,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     let userId = Auth.auth().currentUser?.uid
    /*MARK: reference Type as Property Field in Firebase
     MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
-    
     
     @IBOutlet weak var carimage: UIImageView!
     @IBOutlet weak var location: UITextField!
@@ -46,12 +46,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         }))
         present(alart, animated: true, completion: nil)
         alart.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-       //addddd()
-//        dbStore.collection("users").document(userId!).setData(["cars":[dbStore.collection("Cars").wher .document()]], merge:true)
     }
   
     @IBAction func save(_ sender: Any) {
-        //newCar.addComment(newComment: Comment(id: "hellow", date: Date.now, message: "ok"))
         addcar()
     }
      
@@ -63,7 +60,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         dropList.dataSource=self
         brand.inputView=dropList
         // Do any additional setup after loading the view.
-        //   observeFirestoreDB()
+           observeFirestoreDB()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -73,7 +70,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     
     func observeFirestoreDB(){
         //Add Listner to watch for any changes
-        dbStore.collection("Car").addSnapshotListener { snapshot, error in
+        dbStore.collection("Cars").addSnapshotListener { snapshot, error in
             // process the documents and update UI
             if let documents = snapshot?.documents {
                 // print all data
@@ -82,9 +79,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         }
     }
     func addcar(){
-        
-        dbStore.collection("Cars").addDocument(data: [
-                "userID":dbStore.collection("users").document(userId!), "mssege":dbStore.collection("Msg").document(userId!),
+        let carid = dbStore.collection("Cars").document()
+        carid.setData([
+                "userID":userId!,
                 "brand": brand.text!,
                 "status": status.text!,
                 "location": location.text!,
@@ -96,15 +93,18 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                 if let err = err {
                     print("Error adding document: \(err)")
                 } else {
+                    
                     print("Document added" )
+                    self.dbStore.collection("users").document(self.userId!).collection("cars").addDocument(data: ["car":carid])
                 }
             }
     }
-    func addddd(){
+    func addNewCar(){
         let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual" , location: location.text!, status: status.text!, year: year.text!, price: price.text!, comments:nil)
+       // Car(id: <#T##String#>, brand: <#T##String#>, gasType: <#T##Int#>, gearbox: <#T##String#>, location: <#T##String#>, status: <#T##String#>, year: <#T##String#>, price: <#T##String#>, comments: <#T##[Comment]?#>)
         do{
             let _ = try dbStore.collection("Cars").addDocument(from: newCar)}catch{
-                design.useAlert(title: "Document added", message: "ok", vc: self)
+                design.useAlert(title: "Error Adding Document", message: " ", vc: self)
             }
     }
     var List=["chrysler","honda","mercedes-benz","ram","ford","gmc","audi"
@@ -114,10 +114,10 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
 }
 
 extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
          List.count
     }
