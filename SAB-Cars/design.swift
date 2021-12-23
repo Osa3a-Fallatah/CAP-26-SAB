@@ -27,4 +27,19 @@ class design{
 
     }
     
+    func useAlertWithTextField(){
+        //        let alert = UIAlertController(title: "Register", message: "enter your password again", preferredStyle: UIAlertController.Style.alert)
+        //        alert.addTextField { (textField) in
+        //            textField.placeholder = "confirm password"
+        //            textField.isSecureTextEntry = true}
+        //        alert.addAction(UIAlertAction.init(title: "Cacel", style: .cancel, handler: nil))
+        //        alert.addAction(UIAlertAction.init(title: "Ok", style: .default, handler: { (action) in
+        //            let confirmation=alert.textFields![0]
+        //            if confirmation.text == self.lbl2Password.text && self.lbl2Password.text!.count > 6{
+        //                self.signUp()
+        //                self.performSegue(withIdentifier: "good", sender: self)
+        //                }
+        //        }))
+        //        self.present(alert, animated: true, completion: nil)
+    }
 }

@@ -4,6 +4,7 @@
 //
 //  Created by Osama folta on 07/05/1443 AH.
 //
+import FirebaseFirestore
 import FirebaseAuth
 import UIKit
 
@@ -33,10 +34,18 @@ class RegisterViewController: UIViewController {
         let pass = passwordTextField.text!
         Auth.auth().createUser(withEmail:email, password:pass) { result, error in
             if error == nil {
+                self.makeFile(userId: (result?.user.uid)!)
                 self.performSegue(withIdentifier: "profile", sender: self)
             }  else {
                 design.useAlert(title: "Error", message: error!.localizedDescription, vc: self)
             }
         }
+    }
+    func makeFile(userId:String){
+        let dbStore = Firestore.firestore()
+        let newUser = User(uid: "", firstName: "", lastName: "", phoneNumber:0)
+        do{
+            let _ = try dbStore.collection("users").document(userId).setData(from: newUser)
+        }catch{print(error.localizedDescription)}
     }
 }

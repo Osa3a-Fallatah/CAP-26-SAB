@@ -14,11 +14,6 @@ class CarsViewController: UIViewController {
     let dbStore = Firestore.firestore()
     var cars = [Car]()
     
-    
-    @IBAction func updateProfile(_ sender: Any) {
-        
-    }
-    
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
     @IBAction func signOut(_ sender: Any) {
@@ -30,8 +25,6 @@ class CarsViewController: UIViewController {
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
@@ -41,11 +34,11 @@ class CarsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
+        print("------------------\(cars.count)--------------")
     }
 }
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("------------------\(cars.count)--------------")
         return  cars.count
     }
     
@@ -109,10 +102,8 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                 guard let snapshot = snapshot else { return }
                 let data = snapshot.documents.first!.data()
                 let FN = (data["firstName"]!) as! String
-                let LN = (data["LastName"]!) as! String
-                //                  for doc in snapshot.documents {
-                //                   print(doc.data())    }
-                //                self.showname.title = data["userName"]! as? String
+                let LN = (data["lastName"]!) as! String
+                
                 self.showname.title = "⚙️ \(FN) \(LN)"
             }
     }

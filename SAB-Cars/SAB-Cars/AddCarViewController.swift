@@ -4,11 +4,11 @@
 //
 //  Created by Osama folta on 07/05/1443 AH.
 //
+import FirebaseStorage
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
-import SwiftUI
 import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -60,12 +60,18 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         dropList.dataSource=self
         brand.inputView=dropList
         // Do any additional setup after loading the view.
-           observeFirestoreDB()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         camera.dismiss(animated: true, completion: nil)
-        carimage.image = (info[.originalImage] as! UIImage)
+        let image = (info[.originalImage] as! UIImage)
+        self.carimage.image = image
+        let data = image.jpegData(compressionQuality: 1)
+        let fbStorage = Storage.storage().reference()
+        let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
+        let task = imgRef.putData(data!)
+        task.resume()
+        
     }
     
     func observeFirestoreDB(){

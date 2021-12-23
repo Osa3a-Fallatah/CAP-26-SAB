@@ -8,9 +8,10 @@
 import FirebaseFirestoreSwift
 import Foundation
 
-class User:Codable {
-    var username:String=""
+struct User:Codable {
+    var uid:String=""
+    var firstName:String=""
+    var lastName:String=""
     var phoneNumber:Int=0
-    var gender:String=""
-    var cars:[Car]=[]
+   // var cars:[Car]=[]
 }
