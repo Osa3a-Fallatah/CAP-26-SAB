@@ -19,4 +19,5 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var carphoto: UIView!
     @IBOutlet weak var viewShape: UIView!
     
+    @IBOutlet weak var carImg: UIImageView!
 }

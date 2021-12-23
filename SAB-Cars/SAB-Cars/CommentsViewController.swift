@@ -53,7 +53,7 @@ class CommentsViewController: UIViewController {
         super.viewDidLoad()
         readMsgs()
         // Do any additional setup after loading the view.
-            
+
     }
     func sendMsg(){
     
@@ -65,10 +65,9 @@ class CommentsViewController: UIViewController {
                 let lname = data["lastName"] as! String
                 let fullname = fname + " " + lname
             
-               let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
-                //let liveChat=["id":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime)]
-               // self.ref.child(self.chatRoom).childByAutoId().setv {(error,refernce)in
-                self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat2){(error,refernce)in
+              // let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
+                let liveChat=["id":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime)]
+               self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat){(error,refernce)in
             if error != nil{
                 design.useAlert(title: "error", message: error!.localizedDescription, vc: self)
             }

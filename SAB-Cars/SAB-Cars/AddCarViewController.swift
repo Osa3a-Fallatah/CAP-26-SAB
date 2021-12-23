@@ -12,7 +12,8 @@ import UIKit
 import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    
+    var imgUrl=""
+    var imgData = Data()
     let dbStore = Firestore.firestore()
     var camera = UIImagePickerController()
     var dropList = UIPickerView()
@@ -21,6 +22,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
    /*MARK: reference Type as Property Field in Firebase
     MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var carimage: UIImageView!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var price: UITextField!
@@ -49,7 +51,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
   
     @IBAction func save(_ sender: Any) {
-        addcar()
+        extractedFunc(imgData)
+        print(imgUrl,"-----------------------------------")
     }
      
     override func viewDidLoad() {
@@ -62,16 +65,33 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         // Do any additional setup after loading the view.
     }
     
+    fileprivate func extractedFunc(_ data: Data?) {
+        self.view.alpha = 0.3
+        self.view.isUserInteractionEnabled = false
+        self.activityIndicatorView.isHidden = false
+        self.activityIndicatorView.startAnimating()
+        let fbStorage = Storage.storage().reference()
+        let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
+        imgRef.putData(data!, metadata: nil) { metadata, error in
+            imgRef.downloadURL { url, error in
+                self.imgUrl = (url?.absoluteString) as! String
+                self.addcar()
+                DispatchQueue.main.async {
+                    self.view.alpha = 1
+                    self.activityIndicatorView.stopAnimating()
+                    self.activityIndicatorView.isHidden = true
+                    self.view.isUserInteractionEnabled = true
+
+                }
+            }
+        }.resume()
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         camera.dismiss(animated: true, completion: nil)
         let image = (info[.originalImage] as! UIImage)
         self.carimage.image = image
-        let data = image.jpegData(compressionQuality: 1)
-        let fbStorage = Storage.storage().reference()
-        let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
-        let task = imgRef.putData(data!)
-        task.resume()
-        
+        imgData = image.jpegData(compressionQuality: 1)!
     }
     
     func observeFirestoreDB(){
@@ -91,7 +111,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                 "brand": brand.text!,
                 "status": status.text!,
                 "location": location.text!,
-                "year": year.text!,
+                "year": year.text!,"carimg":imgUrl,
                 "gasType": gasType.selectedSegmentIndex==0 ? 91:95,
                 "gearbox": gearbox.selectedSegmentIndex==0 ? "auto":"manual",
                 "price": price.text!] )

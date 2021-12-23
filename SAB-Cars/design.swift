@@ -14,8 +14,10 @@ class design{
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [
-            UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).cgColor,
-            UIColor(red: 0.1, green: 0.5, blue: 0.7, alpha: 0.8).cgColor
+//            UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).cgColor,
+//            UIColor(red: 0.1, green: 0.5, blue: 0.7, alpha: 0.8).cgColor,
+            UIColor(named: "whit&veryDarkBlue")?.cgColor,
+            UIColor(named: "bule&gray")?.cgColor
         ]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }

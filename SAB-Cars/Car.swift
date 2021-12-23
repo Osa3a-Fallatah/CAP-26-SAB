@@ -16,6 +16,7 @@ struct Car : Codable{
     var status:String=""
     var year:String=""
     var price:String=""
+    var carimg:String=""
     var comments: [Comment]? = []
     
     mutating func addComment(newComment: Comment){

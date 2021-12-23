@@ -50,9 +50,20 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         cell.gerbox.text = cars[indexPath.row].gearbox
         cell.brand.text = cars[indexPath.row].brand
         cell.status.text = cars[indexPath.row].status
-        //cell.status.text = car[indexPath.row].id
         cell.viewShape.layer.cornerRadius = 20
         cell.carphoto.layer.cornerRadius = 15
+        //MARK: convert img
+        let imageURL = URL(string:cars[indexPath.row].carimg)!
+             URLSession.shared.dataTask(with: imageURL){ (data, _, err) in
+                 if err == nil{
+                     guard let data = data  else { return }
+                     print(data)
+                     DispatchQueue.main.async {
+                         cell.carImg.image = UIImage(data: data)
+                     }
+                 }
+             }.resume()
+        
         
         
         return cell
@@ -83,8 +94,9 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                     let gearbox = values["gearbox"] as! String
                     let location = values ["location"] as! String
                     let status = values["status"] as! String
+                    let carimg = values["carimg"] as! String
                     
-                    let car = Car(id: id, brand: brand, gasType: gasType, gearbox: gearbox, location: location, status: status, year: year, price: price, comments: nil)
+                    let car = Car(id: id, brand: brand, gasType: gasType, gearbox: gearbox, location: location, status: status, year: year, price: price,carimg: carimg ,comments: nil)
                     
                     self.cars.append(car)
                     
