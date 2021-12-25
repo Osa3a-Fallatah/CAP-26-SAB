@@ -31,6 +31,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var status: UITextView!
     @IBOutlet weak var gasType: UISegmentedControl!
     @IBOutlet weak var gearbox: UISegmentedControl!
+    @IBAction func forPicker(_ sender: Any) {
+        self.view.endEditing(true)
+    }
     
     @IBAction func uploadPhotos(_ sender: Any) {
         let alart = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -52,7 +55,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
   
     @IBAction func save(_ sender: Any) {
         extractedFunc(imgData)
-        print(imgUrl,"-----------------------------------")
     }
      
     override func viewDidLoad() {
@@ -153,4 +155,5 @@ extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
        return List[row]
     }
+    
 }

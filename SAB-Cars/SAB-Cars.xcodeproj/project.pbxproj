@@ -33,6 +33,8 @@
 		88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648582276E277C0064BE93 /* CommentsViewController.swift */; };
 		88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648584276E4E660064BE93 /* ChatTableViewCell.swift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
+		88BB30152777A7F500061D2D /* CarImageTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB30132777A7F500061D2D /* CarImageTVC.swift */; };
+		88BB30162777A7F500061D2D /* CarImageTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BB30142777A7F500061D2D /* CarImageTVC.xib */; };
 		88E606472773AD0100468EDD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 88E606462773AD0100468EDD /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		88648582276E277C0064BE93 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		88648584276E4E660064BE93 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ../ChatTableViewCell.swift; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		88BB30132777A7F500061D2D /* CarImageTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageTVC.swift; sourceTree = "<group>"; };
+		88BB30142777A7F500061D2D /* CarImageTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageTVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
+				88BB30132777A7F500061D2D /* CarImageTVC.swift */,
+				88BB30142777A7F500061D2D /* CarImageTVC.xib */,
 				88648584276E4E660064BE93 /* ChatTableViewCell.swift */,
 				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
 				88403D672771DD2A00496E7D /* testViewController.swift */,
@@ -236,6 +242,7 @@
 			files = (
 				881C10D02764AD8000A8FB19 /* LaunchScreen.storyboard in Resources */,
 				881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */,
+				88BB30162777A7F500061D2D /* CarImageTVC.xib in Resources */,
 				881C10CD2764AD8000A8FB19 /* Assets.xcassets in Resources */,
 				881C10CB2764AD7F00A8FB19 /* Main.storyboard in Resources */,
 			);
@@ -250,6 +257,7 @@
 			files = (
 				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
+				88BB30152777A7F500061D2D /* CarImageTVC.swift in Sources */,
 				88403D682771DD2A00496E7D /* testViewController.swift in Sources */,
 				88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */,
 				88403D5B277086BE00496E7D /* Comment.swift in Sources */,

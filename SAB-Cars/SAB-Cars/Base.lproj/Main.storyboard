@@ -398,6 +398,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h32-Ue-SLi"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZPC-c6-sAk" firstAttribute="leading" secondItem="h32-Ue-SLi" secondAttribute="leading" constant="45" id="5tp-1x-UT6"/>
                             <constraint firstItem="h32-Ue-SLi" firstAttribute="bottom" secondItem="RLc-gO-ZSh" secondAttribute="bottom" constant="24.329999999999998" id="6bT-0c-ieh"/>
@@ -414,6 +415,9 @@
                             <constraint firstItem="h32-Ue-SLi" firstAttribute="trailing" secondItem="RLc-gO-ZSh" secondAttribute="trailing" constant="112" id="oaO-RG-Os3"/>
                             <constraint firstItem="OaT-4S-TdD" firstAttribute="leading" secondItem="h32-Ue-SLi" secondAttribute="leading" constant="15" id="pas-Jh-MQZ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Eco-hB-vHA" appends="YES" id="8YS-Xe-Kik"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Qoz-Da-5Pk">
                         <nil key="title"/>
@@ -436,6 +440,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Cf-em-WOf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Eco-hB-vHA">
+                    <connections>
+                        <action selector="forPicker:" destination="EFb-7K-uS2" id="xFl-NY-hvk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2464.6153846153848" y="-30.568720379146917"/>
         </scene>
@@ -603,7 +612,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8d-gh-R0o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="640.57971014492762" y="730.58035714285711"/>
+            <point key="canvasLocation" x="560" y="730"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="ABo-3E-Vzf">
@@ -741,7 +750,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50J-eN-ySy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1587.6923076923076" y="760.66350710900474"/>
+            <point key="canvasLocation" x="1548" y="730"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="4ts-Ph-Kr1">

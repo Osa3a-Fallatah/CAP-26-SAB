@@ -14,6 +14,7 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
       @IBOutlet weak var textField: UITextField!
     var chatRoom = ""
+    var photo=""
     
     fileprivate func deleteMessage() {
         let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
@@ -53,7 +54,7 @@ class CommentsViewController: UIViewController {
         super.viewDidLoad()
         readMsgs()
         // Do any additional setup after loading the view.
-
+        tableview.register(UINib(nibName: "CarImageTVC", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     func sendMsg(){
     
@@ -93,21 +94,39 @@ class CommentsViewController: UIViewController {
 
 
 extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages.count
+        if section == 0 {return 1}
+        else{
+            return  messages.count}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+     let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
+            let imageURL = URL(string:photo)!
+            URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
+                if (error == nil) {
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
+                        cell.bigImage.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
+       return cell
+    }
+        else{
         let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
-        
         let comment = messages[indexPath.row]
         
         cell.setData(name: comment.getid(), msg: comment.getmessage(), date: comment.getdate())
         cell.viewshap.layer.cornerRadius = 20
         return cell
     }
-    
+    }
 }
 
 

@@ -67,9 +67,11 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indx = cars[indexPath.row].id
-        print(indx)
+        let img = cars[indexPath.row].carimg
+        print(img)
         let showvc = (storyboard?.instantiateViewController(withIdentifier: "carChat"))! as! CommentsViewController
         showvc.chatRoom = indx
+        showvc.photo = img
         navigationController?.pushViewController(showvc, animated: true)
     }
     
