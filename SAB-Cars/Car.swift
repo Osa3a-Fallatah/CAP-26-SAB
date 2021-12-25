@@ -19,6 +19,7 @@ struct Car : Codable{
     var carimg:String=""
     var comments: [Comment]? = []
     
+    
     mutating func addComment(newComment: Comment){
         comments?.append(newComment)
        }

@@ -13,6 +13,7 @@ class CarsViewController: UIViewController {
     
     let dbStore = Firestore.firestore()
     var cars = [Car]()
+    var owner = ""
     
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
@@ -34,7 +35,7 @@ class CarsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
-        print("------------------\(cars.count)--------------")
+        
     }
 }
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
@@ -44,12 +45,10 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        cell.price.text = String(cars[indexPath.item].price)
-        cell.location.text = cars[indexPath.row].location
-        cell.gasType.text = String(cars[indexPath.row].gasType)
-        cell.gerbox.text = cars[indexPath.row].gearbox
-        cell.brand.text = cars[indexPath.row].brand
-        cell.status.text = cars[indexPath.row].status
+
+        let car=cars[indexPath.row]
+        cell.updateButton.isHidden = true
+        cell.updatecell(item: car)
         cell.viewShape.layer.cornerRadius = 20
         cell.carphoto.layer.cornerRadius = 15
         //MARK: convert img
@@ -64,8 +63,6 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                  }
              }.resume()
         
-        
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,7 +75,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     
     func getInfo(){
         let car = dbStore.collection("Cars")
-        car.addSnapshotListener { (querySnapshot, err) in
+        car.getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -95,9 +92,10 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                     let location = values ["location"] as! String
                     let status = values["status"] as! String
                     let carimg = values["carimg"] as! String
+                    let userid = values["userID"] as! String
                     
                     let car = Car(id: id, brand: brand, gasType: gasType, gearbox: gearbox, location: location, status: status, year: year, price: price,carimg: carimg ,comments: nil)
-                    
+                    self.owner = userid
                     self.cars.append(car)
                     
                 }

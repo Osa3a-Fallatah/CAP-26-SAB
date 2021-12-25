@@ -66,7 +66,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
     
     fileprivate func extractedFunc(_ data: Data?) {
-        self.view.alpha = 0.3
+        self.view.alpha = 0.4
         self.view.isUserInteractionEnabled = false
         self.activityIndicatorView.isHidden = false
         self.activityIndicatorView.startAnimating()
@@ -74,7 +74,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
         imgRef.putData(data!, metadata: nil) { metadata, error in
             imgRef.downloadURL { url, error in
-                self.imgUrl = (url?.absoluteString) as! String
+                self.imgUrl = (url?.absoluteString) as! String 
                 self.addcar()
                 DispatchQueue.main.async {
                     self.view.alpha = 1
@@ -91,7 +91,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         camera.dismiss(animated: true, completion: nil)
         let image = (info[.originalImage] as! UIImage)
         self.carimage.image = image
-        imgData = image.jpegData(compressionQuality: 1)!
+        imgData = image.jpegData(compressionQuality: 0.05)!
     }
     
     func observeFirestoreDB(){
@@ -133,10 +133,10 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                 design.useAlert(title: "Error Adding Document", message: " ", vc: self)
             }
     }
-    var List=["chrysler","honda","mercedes-benz","ram","ford","gmc","audi"
-    ,"subaru","rolls-royce", "porsche","bmw","volvo","lincoln","maserati"
-    ,"infiniti", "fiat","dodge","bentley","chevrolet","land-rover","mitsubishi"
-    ,"volkswagen","toyota","jeep","hyundai","cadillac","lexus","kia","mazda","nissan"]
+    var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
+    ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"
+    ,"Infiniti", "Fiat","Dodge","Bentley","Chevrolet","Land-rover","Mitsubishi"
+    ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS"]
 }
 
 extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{

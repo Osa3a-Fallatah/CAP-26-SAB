@@ -176,7 +176,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUa-We-m9w">
                                                             <rect key="frame" x="25" y="175" width="120" height="20.666666666666657"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="120" id="SXM-JD-xcd"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="SXM-JD-xcd"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -206,6 +206,7 @@
                                                         <constraint firstItem="hfc-Eb-TRN" firstAttribute="leading" secondItem="iMo-dc-5ff" secondAttribute="trailing" constant="20" id="tX4-uf-ZqN"/>
                                                         <constraint firstAttribute="bottom" secondItem="dUt-HD-c5T" secondAttribute="bottom" constant="12" id="uup-tG-bWA"/>
                                                         <constraint firstItem="HbO-Kp-TJD" firstAttribute="leading" secondItem="7IX-17-7GH" secondAttribute="leading" constant="30" id="yTn-RM-LWF"/>
+                                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cUa-We-m9w" secondAttribute="trailing" constant="20" symbolic="YES" id="zTl-Cx-ZHa"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -544,7 +545,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" textContentType="name"/>
                                     </textField>
-                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="last name" borderStyle="roundedRect" placeholder="LastName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arQ-uT-plv" userLabel="Confirm Text Field">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="last name" borderStyle="roundedRect" placeholder="lastName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arQ-uT-plv" userLabel="Confirm Text Field">
                                         <rect key="frame" x="0.0" y="58" width="330" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" textContentType="name"/>
@@ -735,6 +736,7 @@
                     <connections>
                         <outlet property="tableview" destination="2vZ-te-hxc" id="r0l-Hs-trF"/>
                         <outlet property="textField" destination="mh8-GF-JMz" id="3z3-Kw-UMb"/>
+                        <segue destination="Lxz-cG-zzz" kind="show" id="j5c-dA-Dfx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50J-eN-ySy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -746,11 +748,11 @@
             <objects>
                 <viewController id="Lxz-cG-zzz" customClass="testViewController" customModule="SAB_Cars" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sQn-FC-wXx">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X5J-E7-RlR">
-                                <rect key="frame" x="0.0" y="272" width="390" height="34"/>
+                                <rect key="frame" x="0.0" y="228" width="390" height="34"/>
                                 <color key="backgroundColor" red="0.86689406633377075" green="0.92167383432388306" blue="0.96241253614425659" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -767,6 +769,7 @@
                     <toolbarItems>
                         <barButtonItem systemItem="organize" id="2Ol-g2-Z4g"/>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="9Km-bb-dTN"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textout" destination="X5J-E7-RlR" id="b9c-tc-SBD"/>

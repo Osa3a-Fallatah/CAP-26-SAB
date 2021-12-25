@@ -29,7 +29,7 @@ class CommentsViewController: UIViewController {
         
         dbStore.getDocuments { snapshot, error in
             for doc in snapshot!.documents {
-                let carDoc = doc.data() as! [String: Any]
+                let carDoc = doc.data() 
                 if let uid = carDoc["userID"] as? String {
                     if (Auth.auth().currentUser?.uid == uid) {
                         print ("Can Delete")
@@ -100,10 +100,10 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
-        cell.lableForName.text = messages[indexPath.row].id
-        cell.lablForText.text = messages[indexPath.row].message
-        cell.lableForDate.text = messages[indexPath.row].date
         
+        let comment = messages[indexPath.row]
+        
+        cell.setData(name: comment.getid(), msg: comment.getmessage(), date: comment.getdate())
         cell.viewshap.layer.cornerRadius = 20
         return cell
     }

@@ -13,5 +13,14 @@ struct Comment :Codable{
     var date : String=""
     var message:String=""
     //    var commentOn:Car
+    func getid()->String{
+        id
+    }
+    func getmessage()->String{
+        message
+    }
+    func getdate()->String{
+        date
+    }
     //    var commentBy:User
 }
