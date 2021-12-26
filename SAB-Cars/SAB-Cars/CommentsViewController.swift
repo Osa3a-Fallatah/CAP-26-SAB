@@ -105,7 +105,7 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.item == 0 {
      let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
             let imageURL = URL(string:photo)!
             URLSession.shared.dataTask(with: imageURL) { (data, _, error) in

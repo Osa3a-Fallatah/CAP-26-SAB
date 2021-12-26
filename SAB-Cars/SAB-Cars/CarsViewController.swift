@@ -4,16 +4,19 @@
 //
 //  Created by Osama folta on 07/05/1443 AH.
 //
+import Firebase
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import FirebaseFirestore
 import UIKit
 
 class CarsViewController: UIViewController {
-    
+    let db = Database.database().reference()
     let dbStore = Firestore.firestore()
     var cars = [Car]()
+    var carsImages=[UIImage]()
     var owner = ""
+    var canDelet = false
     
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
@@ -35,9 +38,9 @@ class CarsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
-        
     }
 }
+
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  cars.count
@@ -53,26 +56,35 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         cell.carphoto.layer.cornerRadius = 15
         //MARK: convert img
         let imageURL = URL(string:cars[indexPath.row].carimg)!
-             URLSession.shared.dataTask(with: imageURL){ (data, _, err) in
-                 if err == nil{
-                     guard let data = data  else { return }
-                     print(data)
-                     DispatchQueue.main.async {
-                         cell.carImg.image = UIImage(data: data)
-                     }
-                 }
-             }.resume()
-        
+             URLSession.shared.dataTask(with: imageURL)
+        let data = try? Data(contentsOf: imageURL)
+        cell.carImg.image = UIImage(data: data!)
+      if canDelet == true {
+          cell.updateButton.isHidden = false
+      }
+
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indx = cars[indexPath.row].id
-        let img = cars[indexPath.row].carimg
-        print(img)
+        let imageCar = cars[indexPath.row].carimg
+    
         let showvc = (storyboard?.instantiateViewController(withIdentifier: "carChat"))! as! CommentsViewController
         showvc.chatRoom = indx
-        showvc.photo = img
+        showvc.photo = imageCar
         navigationController?.pushViewController(showvc, animated: true)
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let actionDelete = UIContextualAction(style: .destructive, title: "Delete") { _, _, handler in
+            guard  self.canDelet == true else { return }
+            let itemToDelete = self.cars[indexPath.row]
+            self.dbStore.collection("Cars").document(itemToDelete.id).delete()
+            self.db.child("Comments").child(itemToDelete.id).removeValue()
+//                self.fetchDataFromDB()
+            }
+ 
+        return UISwipeActionsConfiguration(actions: [actionDelete])
     }
     
     func getInfo(){
@@ -99,6 +111,11 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                     let car = Car(id: id, brand: brand, gasType: gasType, gearbox: gearbox, location: location, status: status, year: year, price: price,carimg: carimg ,comments: nil)
                     self.owner = userid
                     self.cars.append(car)
+                    
+                    if userid == Auth.auth().currentUser?.uid{
+                        self.canDelet=true
+                    }
+                    
                     
                 }
                 DispatchQueue.main.async {
@@ -134,4 +151,5 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         }
         
     }
+
 }

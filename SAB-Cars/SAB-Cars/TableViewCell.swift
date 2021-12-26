@@ -36,7 +36,5 @@ class TableViewCell: UITableViewCell {
         gerbox.text!=item.gearbox
         gasType.text!=String(item.gasType)
         brand.text!=item.brand
-        
-        
     }
 }
