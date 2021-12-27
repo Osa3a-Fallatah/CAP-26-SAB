@@ -574,7 +574,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dta-v8-E2c">
-                                <rect key="frame" x="76" y="17.666666666666657" width="214" height="178.33333333333331"/>
+                                <rect key="frame" x="88" y="17.666666666666657" width="214" height="178.33333333333331"/>
                                 <color key="tintColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="173.5" id="28h-W8-2A6"/>
@@ -589,7 +589,6 @@
                         <constraints>
                             <constraint firstItem="kJY-AF-5L3" firstAttribute="bottom" secondItem="3gP-aY-yMS" secondAttribute="bottom" constant="139" id="4ky-T8-5Za"/>
                             <constraint firstItem="kJY-AF-5L3" firstAttribute="trailing" secondItem="DyS-6J-6aG" secondAttribute="trailing" constant="30" id="6QP-nx-Khi"/>
-                            <constraint firstItem="kJY-AF-5L3" firstAttribute="trailing" secondItem="dta-v8-E2c" secondAttribute="trailing" constant="100" id="BgE-3u-MQH"/>
                             <constraint firstAttribute="bottom" secondItem="SL7-hG-pTI" secondAttribute="bottom" id="HcZ-qT-ggi"/>
                             <constraint firstItem="SL7-hG-pTI" firstAttribute="trailing" secondItem="kJY-AF-5L3" secondAttribute="trailing" id="KZO-4l-2Mj"/>
                             <constraint firstItem="dta-v8-E2c" firstAttribute="top" secondItem="kJY-AF-5L3" secondAttribute="top" constant="20" id="Klo-dg-MSf"/>
@@ -598,6 +597,7 @@
                             <constraint firstItem="DyS-6J-6aG" firstAttribute="top" secondItem="kJY-AF-5L3" secondAttribute="top" constant="250" id="ca3-Du-VU7"/>
                             <constraint firstItem="SL7-hG-pTI" firstAttribute="leading" secondItem="kJY-AF-5L3" secondAttribute="leading" id="d0J-8W-1tr"/>
                             <constraint firstItem="DyS-6J-6aG" firstAttribute="leading" secondItem="kJY-AF-5L3" secondAttribute="leading" constant="30" id="pqi-F5-iek"/>
+                            <constraint firstItem="dta-v8-E2c" firstAttribute="centerX" secondItem="qn4-bL-sNk" secondAttribute="centerX" id="t0j-7C-FRd"/>
                             <constraint firstItem="3gP-aY-yMS" firstAttribute="leading" secondItem="kJY-AF-5L3" secondAttribute="leading" constant="117" id="xmp-Kd-pv7"/>
                         </constraints>
                     </view>

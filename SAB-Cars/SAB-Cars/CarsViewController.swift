@@ -50,10 +50,8 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
 
         let car=cars[indexPath.row]
-        cell.updateButton.isHidden = true
         cell.updatecell(item: car)
-        cell.viewShape.layer.cornerRadius = 20
-        cell.carphoto.layer.cornerRadius = 15
+        cell.setCellConfig()
         //MARK: convert img
         let imageURL = URL(string:cars[indexPath.row].carimg)!
              URLSession.shared.dataTask(with: imageURL)
@@ -82,23 +80,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         showvc.photo = imageCar
         navigationController?.pushViewController(showvc, animated: true)
     }
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        
-//        let actionDelete = UIContextualAction(style: .destructive, title: "Delete") { _, _, handler in
-//            guard  self.canDelet == true else { return }
-//            let itemToDelete = self.cars[indexPath.row]
-//            self.dbStore.collection("Cars").document(itemToDelete.id).delete()
-//            self.db.child("Comments").child(itemToDelete.id).removeValue()
-//            self.getInfo()
-//            tableView.reloadData()
-//            }
-// 
-//        return UISwipeActionsConfiguration(actions: [actionDelete])
-//    }
-//    
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        .delete
-//    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard  self.canDelet == true else { return }
         if editingStyle == .delete {
@@ -116,11 +98,12 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         let car = dbStore.collection("Cars")
         car.getDocuments { (querySnapshot, err) in
             if let err = err {
+                
                 print("Error getting documents: \(err)")
             } else {
                 self.cars.removeAll()
                 for document in querySnapshot!.documents {
-                    // print("\(document.documentID) => \(document.data())")
+                    
                     let values = document.data()
                     
                     let id = document.documentID
@@ -141,8 +124,6 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
                     if userid == Auth.auth().currentUser?.uid{
                         self.canDelet=true
                     }
-                    
-                    
                 }
                 DispatchQueue.main.async {
                     self.table.reloadData()

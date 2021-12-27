@@ -23,6 +23,10 @@ class TableViewCell: UITableViewCell {
     
     func setCellConfig(){
         
+     updateButton.isHidden = true
+     viewShape.layer.cornerRadius = 20
+     carphoto.layer.cornerRadius = 15
+        
     }
     func updatecell(item:Car){
         price.text!=String(item.price)
