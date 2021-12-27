@@ -86,7 +86,7 @@ class CommentsViewController: UIViewController {
             
             self.messages.append(package)
             self.tableview.reloadData()
-                let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                let indexPath = IndexPath(row: self.messages.count - 1, section: 1)
                 self.tableview.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
@@ -105,7 +105,7 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.item == 0 {
+        if indexPath.section == 0 {
      let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
             let imageURL = URL(string:photo)!
             URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
@@ -126,6 +126,14 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
         cell.viewshap.layer.cornerRadius = 20
         return cell
     }
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            
+        return 130
+        }else{
+            return 120
+        }
     }
 }
 

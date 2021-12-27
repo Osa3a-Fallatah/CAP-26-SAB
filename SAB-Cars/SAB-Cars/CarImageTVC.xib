@@ -17,14 +17,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bHt-6y-yH2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
+                        <rect key="frame" x="22" y="22" width="276" height="149"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="bHt-6y-yH2" secondAttribute="bottom" id="3FQ-7a-OWS"/>
-                    <constraint firstAttribute="trailing" secondItem="bHt-6y-yH2" secondAttribute="trailing" id="9Qb-e9-V1T"/>
-                    <constraint firstItem="bHt-6y-yH2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RUf-6a-G3K"/>
-                    <constraint firstItem="bHt-6y-yH2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jNb-7e-tjv"/>
+                    <constraint firstAttribute="bottom" secondItem="bHt-6y-yH2" secondAttribute="bottom" constant="22" id="PZZ-ip-XPU"/>
+                    <constraint firstItem="bHt-6y-yH2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="QaA-Ri-y9O"/>
+                    <constraint firstItem="bHt-6y-yH2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="ZbW-BG-rpT"/>
+                    <constraint firstAttribute="trailing" secondItem="bHt-6y-yH2" secondAttribute="trailing" constant="22" id="zBv-sK-TY0"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
