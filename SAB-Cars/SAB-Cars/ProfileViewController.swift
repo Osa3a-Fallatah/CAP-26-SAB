@@ -19,15 +19,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var phoneProfile: UITextField!
     @IBOutlet weak var save: UIButton!
     
+    @IBOutlet weak var visiblePhoneNumber: UISegmentedControl!
     @IBAction func saveButton(_ sender: Any) {
         
         if ((firstName.text!.trimmingCharacters(in: .whitespaces)=="" || (firstName.text!.count<3)) &&
             (lastName.text?.trimmingCharacters(in: .whitespaces)=="") || (lastName.text!.count<3)  &&
-            (phoneProfile.text!.count != 10) || (phoneProfile.text?.trimmingCharacters(in: .whitespaces)=="")){
+            (phoneProfile.text!.count == 10) || (phoneProfile.text?.trimmingCharacters(in: .whitespaces)=="")){
             design.useAlert(title: "Error", message: "please chek your info", vc: self)
             
         }else {
-            let newUser = User(uid: userId, firstName: firstName.text!, lastName: lastName.text!, phoneNumber: Int(phoneProfile.text!) ?? 0)
+            let newUser = User(uid: userId, firstName: firstName.text!, lastName: lastName.text!, phoneNumber: Int(phoneProfile.text!) ?? 0,showPhone: visiblePhoneNumber.selectedSegmentIndex==0 ? false:true)
             do{
                 let _ = try dbStore.collection("users").document(userId).setData(from: newUser)
             }catch{print(error.localizedDescription)}
@@ -60,5 +61,5 @@ class ProfileViewController: UIViewController {
             
         }
     }
-    
+
 }

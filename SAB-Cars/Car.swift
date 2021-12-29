@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct Car : Codable{
-    var id:String=""
+    @DocumentID var id:String?=""
     var brand:String=""
     var gasType :Int=0
     var gearbox:String=""
@@ -17,7 +17,8 @@ struct Car : Codable{
     var status:String=""
     var year:String=""
     var price:String=""
-    var carimg:String=""
+    var carImage:String=""
+    var userID:String=""
     var comments: [Comment]? = []
     
     

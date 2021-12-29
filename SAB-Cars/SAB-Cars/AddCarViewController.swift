@@ -4,11 +4,11 @@
 //
 //  Created by Osama folta on 07/05/1443 AH.
 //
-import FirebaseStorage
+import UIKit
 import Foundation
 import FirebaseAuth
+import FirebaseStorage
 import FirebaseFirestore
-import UIKit
 import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -54,9 +54,11 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
   
     @IBAction func save(_ sender: Any) {
+        if imgData.isEmpty == false {
         extractedFunc(imgData)
+        }
     }
-     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         design.chageColore(view)
@@ -65,6 +67,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         dropList.dataSource=self
         brand.inputView=dropList
         // Do any additional setup after loading the view.
+        getCar()
     }
     
     fileprivate func extractedFunc(_ data: Data?) {
@@ -76,14 +79,15 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
         imgRef.putData(data!, metadata: nil) { metadata, error in
             imgRef.downloadURL { url, error in
-                self.imgUrl = (url?.absoluteString) as! String 
-                self.addcar()
+                self.imgUrl = (url?.absoluteString) as! String
+                //MARK: update or add
+                if self.newCar.id!.isEmpty == true{self.addNewCar()}
+                else{self.updateNewCar1()}
                 DispatchQueue.main.async {
                     self.view.alpha = 1
                     self.activityIndicatorView.stopAnimating()
                     self.activityIndicatorView.isHidden = true
                     self.view.isUserInteractionEnabled = true
-
                 }
             }
         }.resume()
@@ -95,19 +99,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         self.carimage.image = image
         imgData = image.jpegData(compressionQuality: 0.05)!
     }
-    
-    func observeFirestoreDB(){
-        //Add Listner to watch for any changes
-        dbStore.collection("Cars").addSnapshotListener { snapshot, error in
-            // process the documents and update UI
-            if let documents = snapshot?.documents {
-                // print all data
-                let _ = documents.map{print($0.data())}
-            }
-        }
-    }
-    func addcar(){
-        let carid = dbStore.collection("Cars").document()
+    func updateCar(){
+        let carid = dbStore.collection("Cars").document(newCar.id!)
         carid.setData([
                 "userID":userId!,
                 "brand": brand.text!,
@@ -120,20 +113,36 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                     { err in
                 if let err = err {
                     print("Error adding document: \(err)")
-                } else {
-                    
-                    print("Document added" )
-                    self.dbStore.collection("users").document(self.userId!).collection("cars").addDocument(data: ["car":carid])
                 }
             }
     }
+    func updateNewCar1(){
+        
+        let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!, comments: nil)
+        
+        do{
+            let carid = dbStore.collection("Cars").document(newCar.id!)
+            try carid.setData(from: carToUpdate)}catch{
+                design.useAlert(title: "Error Adding Document", message: " ", vc: self)
+            }
+    }
+    
     func addNewCar(){
-        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual" , location: location.text!, status: status.text!, year: year.text!, price: price.text!, comments:nil)
-       // Car(id: <#T##String#>, brand: <#T##String#>, gasType: <#T##Int#>, gearbox: <#T##String#>, location: <#T##String#>, status: <#T##String#>, year: <#T##String#>, price: <#T##String#>, comments: <#T##[Comment]?#>)
+        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!, comments: nil)
+        
         do{
             let _ = try dbStore.collection("Cars").addDocument(from: newCar)}catch{
                 design.useAlert(title: "Error Adding Document", message: " ", vc: self)
             }
+    }
+    func getCar(){
+       brand.text!=newCar.brand
+        gasType.selectedSegmentIndex=newCar.gasType==91 ? 0:1
+        gearbox.selectedSegmentIndex=newCar.gearbox=="auto" ? 0:1
+        location.text!=newCar.location
+        status.text!=newCar.status
+        year.text!=newCar.year
+        price.text!=newCar.price
     }
     var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
     ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"

@@ -13,5 +13,6 @@ struct User:Codable {
     var firstName:String=""
     var lastName:String=""
     var phoneNumber:Int=0
+    var showPhone=false
    // var cars:[Car]=[]
 }

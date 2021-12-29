@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class TableViewCell: UITableViewCell {
     
@@ -20,20 +21,26 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var viewShape: UIView!
     
     @IBOutlet weak var carImg: UIImageView!
+ 
     
     func setCellConfig(){
-        
-     updateButton.isHidden = true
-     viewShape.layer.cornerRadius = 20
-     carphoto.layer.cornerRadius = 15
-        
+
+        viewShape.layer.cornerRadius = 20
+        carphoto.layer.cornerRadius = 15
     }
-    func updatecell(item:Car){
+    
+    func addObject(item:Car){
         price.text!=String(item.price)
         location.text!=item.location
         status.text!=item.status
         gerbox.text!=item.gearbox
         gasType.text!=String(item.gasType)
         brand.text!=item.brand
+    }
+    func addImage(Link:String){
+        let imageURL = URL(string:Link)!
+        URLSession.shared.dataTask(with: imageURL)
+        let data = try? Data(contentsOf: imageURL)
+        carImg.image = UIImage(data: data!)
     }
 }

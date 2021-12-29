@@ -12,7 +12,7 @@ import UIKit
 class CommentsViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
-      @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: UITextField!
     var chatRoom = ""
     var photo=""
     
@@ -30,7 +30,7 @@ class CommentsViewController: UIViewController {
         
         dbStore.getDocuments { snapshot, error in
             for doc in snapshot!.documents {
-                let carDoc = doc.data() 
+                let carDoc = doc.data()
                 if let uid = carDoc["userID"] as? String {
                     if (Auth.auth().currentUser?.uid == uid) {
                         print ("Can Delete")
@@ -39,7 +39,7 @@ class CommentsViewController: UIViewController {
                 }
             }
         }
-
+        
     }
     @IBAction func sendButton(_ sender: Any) {
         if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)==""{
@@ -57,26 +57,30 @@ class CommentsViewController: UIViewController {
         tableview.register(UINib(nibName: "CarImageTVC", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     func sendMsg(){
-    
+        var fullname = ""
         dbStore.whereField("uid", isEqualTo: Auth.auth().currentUser!.uid)
             .getDocuments { snapshot, err in
                 guard let snapshot = snapshot else { return }
                 let data = snapshot.documents.first!.data()
                 let fname = data["firstName"] as! String
                 let lname = data["lastName"] as! String
-                let fullname = fname + " " + lname
-            
-              // let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
+                 fullname = fname + " " + lname
+                let phoneNumber=(data["phoneNumber"]!) as! Int
+                let show=(data["showPhone"]!) as! Bool
+                if show == true{fullname = fname + " " + "\(phoneNumber)" }
+               
+                
+                // let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
                 let liveChat=["id":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime)]
-               self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat){(error,refernce)in
-            if error != nil{
-                design.useAlert(title: "error", message: error!.localizedDescription, vc: self)
+                self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat){(error,refernce)in
+                    if error != nil{
+                        design.useAlert(title: "error", message: error!.localizedDescription, vc: self)
+                    }
+                }
             }
-        }
-    }
     }
     func readMsgs(){
-      
+        
         ref.child(chatRoom).observe(.childAdded) { snapshot in
             let result=snapshot.value as! Dictionary<String,String>
             let id=result["id"]!
@@ -86,8 +90,8 @@ class CommentsViewController: UIViewController {
             
             self.messages.append(package)
             self.tableview.reloadData()
-                let indexPath = IndexPath(row: self.messages.count - 1, section: 1)
-                self.tableview.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 1)
+            self.tableview.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
 }
@@ -106,34 +110,22 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-     let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
-            let imageURL = URL(string:photo)!
-            URLSession.shared.dataTask(with: imageURL) { (data, _, error) in
-                if (error == nil) {
-                    guard let data = data else { return }
-                    DispatchQueue.main.async {
-                        cell.bigImage.image = UIImage(data: data)
-                    }
-                }
-            }.resume()
-       return cell
-    }
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
+            cell.bigImage.imageFromURL(imagUrl: photo)
+            return cell
+        }
         else{
-        let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
-        let comment = messages[indexPath.row]
-        
-        cell.setData(name: comment.getid(), msg: comment.getmessage(), date: comment.getdate())
-        cell.viewshap.layer.cornerRadius = 20
-        return cell
-    }
+            let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
+            
+            let comment = messages[indexPath.row]
+            cell.setData(name: comment.getid(), msg: comment.getmessage(), date: comment.getdate())
+            
+            return cell
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            
-        return 250
-        }else{
-            return 120
-        }
+        if indexPath.section == 0 { return 250 }
+        else{  return 120 }
     }
 }
 

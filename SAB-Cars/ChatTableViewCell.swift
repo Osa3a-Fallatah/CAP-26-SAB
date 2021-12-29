@@ -18,6 +18,7 @@ class ChatTableViewCell: UITableViewCell {
         lableForName.text!=name
         lablForText.text!=msg
         lableForDate.text=date
+        viewshap.layer.cornerRadius = 20
     }
 }
 
