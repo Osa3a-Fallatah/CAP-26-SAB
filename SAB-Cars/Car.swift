@@ -9,20 +9,16 @@ import Foundation
 import UIKit
 
 struct Car : Codable{
-    @DocumentID var id:String?=""
-    var brand:String=""
-    var gasType :Int=0
-    var gearbox:String=""
-    var location:String=""
-    var status:String=""
-    var year:String=""
-    var price:String=""
-    var carImage:String=""
-    var userID:String=""
-    var comments: [Comment]? = []
+    @DocumentID var id:String? = ""
+    var brand:String = ""
+    var gasType :String = ""
+    var gearbox:String = ""
+    var location:String = ""
+    var status:String = ""
+    var year:String = ""
+    var price:String = ""
+    var carImage:String = ""
+    var userID:String = ""
     
-    
-    mutating func addComment(newComment: Comment){
-        comments?.append(newComment)
-       }
 }
+
