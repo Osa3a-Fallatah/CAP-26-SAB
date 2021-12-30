@@ -13,6 +13,7 @@ class CommentsViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var textField: UITextField!
+    let userId=Auth.auth().currentUser?.uid
     var chatRoom = ""
     var photo=""
     
@@ -51,6 +52,7 @@ class CommentsViewController: UIViewController {
     var messages = [Comment]()
     
     override func viewDidLoad() {
+        design.chageColore(self.view)
         super.viewDidLoad()
         readMsgs()
         // Do any additional setup after loading the view.
@@ -70,8 +72,8 @@ class CommentsViewController: UIViewController {
                 if show == true{fullname = fname + " " + "\(phoneNumber)" }
                
                 
-                // let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
-                let liveChat=["id":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime)]
+//                let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
+                let liveChat=["sender":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime), "userID":self.userId]
                 self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat){(error,refernce)in
                     if error != nil{
                         design.useAlert(title: "error", message: error!.localizedDescription, vc: self)
@@ -82,11 +84,12 @@ class CommentsViewController: UIViewController {
     func readMsgs(){
         
         ref.child(chatRoom).observe(.childAdded) { snapshot in
+            
             let result=snapshot.value as! Dictionary<String,String>
-            let id=result["id"]!
+            let sender=result["sender"]!
             let msg=result["message"]!
             let date=result["date"]!
-            let package=Comment(id: id, date: date, message: msg)
+            let package=Comment(sender: sender, date: date, message: msg)
             
             self.messages.append(package)
             self.tableview.reloadData()
@@ -126,6 +129,10 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 { return 250 }
         else{  return 120 }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let commitID=messages[indexPath.row]
+        print(commitID)
     }
 }
 

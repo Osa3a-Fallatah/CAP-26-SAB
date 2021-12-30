@@ -8,14 +8,21 @@
 import UIKit
 
 class testViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
-    
+    @IBOutlet weak var menuButton: UIButton!
+
     @IBOutlet weak var textout: UITextField!
     var num=["aa" , "bb" , "cc" , "dd"]
     var arr=["mom","dad"]
+    var arry = UIMenu(title: "",children: [
+        UIAction(title: "ok", handler: {_ in ()}),
+        UIAction(title: "aa", handler: {_ in ()}),
+        UIAction(title: "cc", handler: {_ in ()})
+    ])
+  
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
-    
+ 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
          num.count
     }
@@ -34,7 +41,9 @@ class testViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
         multichoes.dataSource=self
         textout.inputView = multichoes
         // Do any additional setup after loading the view.
-        
+        menuButton.menu=arry
+        menuButton.showsMenuAsPrimaryAction=true
+        textout.text=menuButton.currentTitle
      //view.endEditing(true)
     }
     func getimage(){
@@ -51,14 +60,4 @@ class testViewController: UIViewController,UIPickerViewDelegate,UIPickerViewData
     }
 
 }
-extension UITextField {
-    //@Change placeholder color
-    @IBInspectable var placeHolderColor: UIColor? {
-        get {
-            return self.placeHolderColor
-        }
-        set {
-            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
-        }
-    }
-}
+

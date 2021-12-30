@@ -19,9 +19,10 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     var dropList = UIPickerView()
     var newCar = Car()
     let userId = Auth.auth().currentUser?.uid
-   /*MARK: reference Type as Property Field in Firebase
-    MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
+    /*MARK: reference Type as Property Field in Firebase
+     MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
     
+    @IBOutlet weak var testbutton: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var carimage: UIImageView!
     @IBOutlet weak var location: UITextField!
@@ -52,11 +53,11 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         present(alart, animated: true, completion: nil)
         alart.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     }
-  
+    
     @IBAction func save(_ sender: Any) {
-        if imgData.isEmpty == false {
-        extractedFunc(imgData)
-        }
+        if imgData.isEmpty == false{
+            extractedFunc(imgData)
+        }else{design.useAlert(title: "Error", message: "Please Check Your Info", vc: self)}
     }
     
     override func viewDidLoad() {
@@ -77,6 +78,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         self.activityIndicatorView.startAnimating()
         let fbStorage = Storage.storage().reference()
         let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
+        
         imgRef.putData(data!, metadata: nil) { metadata, error in
             imgRef.downloadURL { url, error in
                 self.imgUrl = (url?.absoluteString) as! String
@@ -88,6 +90,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
                     self.activityIndicatorView.stopAnimating()
                     self.activityIndicatorView.isHidden = true
                     self.view.isUserInteractionEnabled = true
+                    self.savedDocAlert()
                 }
             }
         }.resume()
@@ -99,26 +102,10 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         self.carimage.image = image
         imgData = image.jpegData(compressionQuality: 0.05)!
     }
-    func updateCar(){
-        let carid = dbStore.collection("Cars").document(newCar.id!)
-        carid.setData([
-                "userID":userId!,
-                "brand": brand.text!,
-                "status": status.text!,
-                "location": location.text!,
-                "year": year.text!,"carimg":imgUrl,
-                "gasType": gasType.selectedSegmentIndex==0 ? 91:95,
-                "gearbox": gearbox.selectedSegmentIndex==0 ? "auto":"manual",
-                "price": price.text!] )
-                    { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                }
-            }
-    }
+   
     func updateNewCar1(){
-        
-        let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!, comments: nil)
+        if year.text! != "\(1975...2045)"{return}
+        let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!)
         
         do{
             let carid = dbStore.collection("Cars").document(newCar.id!)
@@ -128,7 +115,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
     
     func addNewCar(){
-        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? 91:95, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!, comments: nil)
+            let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!)
         
         do{
             let _ = try dbStore.collection("Cars").addDocument(from: newCar)}catch{
@@ -136,8 +123,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
             }
     }
     func getCar(){
-       brand.text!=newCar.brand
-        gasType.selectedSegmentIndex=newCar.gasType==91 ? 0:1
+        brand.text!=newCar.brand
+        gasType.selectedSegmentIndex=newCar.gasType=="Gasoline" ? 0:1
         gearbox.selectedSegmentIndex=newCar.gearbox=="auto" ? 0:1
         location.text!=newCar.location
         status.text!=newCar.status
@@ -145,9 +132,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         price.text!=newCar.price
     }
     var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
-    ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"
-    ,"Infiniti", "Fiat","Dodge","Bentley","Chevrolet","Land-rover","Mitsubishi"
-    ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS"]
+              ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"
+              ,"Infiniti", "Fiat","Dodge","Bentley","Chevrolet","Land-rover","Mitsubishi"
+              ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS"]
 }
 
 extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
@@ -156,13 +143,20 @@ extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
         1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-         List.count
+        List.count
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         brand.text! = List[row]
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       return List[row]
+        return List[row]
     }
-    
+    func savedDocAlert(){
+               let alert = UIAlertController(title: "Successfully Added", message: "", preferredStyle: UIAlertController.Style.alert)
+               alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                 let out =  self.storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
+                   self.navigationController?.pushViewController(out, animated: false)
+                        }))
+               self.present(alert, animated: true, completion: nil)
+    }
 }

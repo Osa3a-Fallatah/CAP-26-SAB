@@ -20,6 +20,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var carphoto: UIView!
     @IBOutlet weak var viewShape: UIView!
     
+    @IBOutlet weak var year: UILabel!
     @IBOutlet weak var carImg: UIImageView!
  
     
@@ -36,11 +37,6 @@ class TableViewCell: UITableViewCell {
         gerbox.text!=item.gearbox
         gasType.text!=String(item.gasType)
         brand.text!=item.brand
-    }
-    func addImage(Link:String){
-        let imageURL = URL(string:Link)!
-        URLSession.shared.dataTask(with: imageURL)
-        let data = try? Data(contentsOf: imageURL)
-        carImg.image = UIImage(data: data!)
+        year.text!=item.year
     }
 }

@@ -27,6 +27,7 @@ class CarsViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        design.chageColore(self.view)
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         getInfo()
@@ -34,7 +35,7 @@ class CarsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
-       
+        
     }
 }
 
@@ -49,7 +50,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         
         cell.addObject(item: car)
         cell.setCellConfig()
-       
+        
         cell.updateButton.isHidden = car.userID != Auth.auth().currentUser?.uid
         cell.updateButton.tag = indexPath.row
         cell.updateButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
@@ -143,5 +144,16 @@ extension UIImageView {
                 }
             }
         }.resume()
+    }
+}
+extension UITextField {
+    //@Change placeholder color
+    @IBInspectable var placeHolderColor: UIColor? {
+        get {
+            return self.placeHolderColor
+        }
+        set {
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+        }
     }
 }

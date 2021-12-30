@@ -4,17 +4,17 @@
 //
 //  Created by Osama folta on 16/05/1443 AH.
 //
-
+import FirebaseAuth
 import FirebaseFirestoreSwift
 import Foundation
 
 struct Comment :Codable{
-    var id :String=""
+    var sender :String=""
     var date : String=""
     var message:String=""
     //    var commentOn:Car
     func getid()->String{
-        id
+        sender
     }
     func getmessage()->String{
         message
@@ -22,5 +22,5 @@ struct Comment :Codable{
     func getdate()->String{
         date
     }
-    //    var commentBy:User
+ 
 }
