@@ -11,10 +11,11 @@ import FirebaseFirestore
 import UIKit
 
 class CarsViewController: UIViewController {
-    let db = Database.database().reference()
-    let dbStore = Firestore.firestore()
+
     var cars = [Car]()
-    
+    let dbStore = Firestore.firestore()
+    let db = Database.database().reference()
+
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
     @IBAction func signOut(_ sender: Any) {
@@ -30,8 +31,16 @@ class CarsViewController: UIViewController {
         design.chageColore(self.view)
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        getInfo()
-        getUserName()
+    
+      
+        UserInfo.shared.getCars { car in
+            self.cars.append(car)
+              DispatchQueue.main.async { self.table.reloadData() }
+        }
+        UserInfo.shared.getUserName { user in
+            self.showname.title=("\(user.firstName ) \(user.lastName)")
+       }
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         table.reloadData()
@@ -48,7 +57,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         let car=cars[indexPath.row]
         
-        cell.addObject(item: car)
+        cell.update(item: car)
         cell.setCellConfig()
         
         cell.updateButton.isHidden = car.userID != Auth.auth().currentUser?.uid
@@ -73,6 +82,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         let showvc = (storyboard?.instantiateViewController(withIdentifier: "carChat"))! as! CommentsViewController
         showvc.chatRoom = indx!
         showvc.photo = imageCar
+        showvc.desc=cars[indexPath.row].status
         navigationController?.pushViewController(showvc, animated: true)
     }
     
@@ -84,42 +94,12 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.dbStore.collection("Cars").document(itemToDelete.id!).delete()
             self.db.child("Comments").child(itemToDelete.id!).removeValue()
-            self.getInfo()
             tableView.reloadData()
         }
     }
     
-    func getInfo(){
-        let car = dbStore.collection("Cars")
-        car.addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                
-                print("Error getting documents: \(err)")
-            } else {
-                
-                self.cars.removeAll()
-                for document in querySnapshot!.documents {
-                    let carObj = try! document.data(as: Car.self)
-                    self.cars.append(carObj!)
-                }
-                DispatchQueue.main.async { self.table.reloadData() }
-            }
-        }
-    }
-    func getUserName(){
-        
-        dbStore.collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser!.uid)
-            .getDocuments { snapshot, err in
-                guard let snapshot = snapshot else { return }
-                let data = snapshot.documents.first!.data()
-                let FN = (data["firstName"]!) as! String
-                let LN = (data["lastName"]!) as! String
-                
-                self.showname.title = "⚙️ \(FN) \(LN)"
-            }
-    }
-    
-    
+ 
+ 
 }
 
 //MARK: convert img

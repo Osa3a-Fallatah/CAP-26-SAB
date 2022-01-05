@@ -6,7 +6,7 @@
 //
 
 import FirebaseFirestoreSwift
-import Foundation
+
 
 struct User:Codable {
     var uid:String=""
@@ -14,4 +14,5 @@ struct User:Codable {
     var lastName:String=""
     var phoneNumber:Int=0
     var showPhone=false
+    
 }

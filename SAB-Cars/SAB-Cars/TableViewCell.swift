@@ -30,13 +30,13 @@ class TableViewCell: UITableViewCell {
         carphoto.layer.cornerRadius = 15
     }
     
-    func addObject(item:Car){
-        price.text!=String(item.price)
-        location.text!=item.location
-        status.text!=item.status
-        gerbox.text!=item.gearbox
-        gasType.text!=String(item.gasType)
-        brand.text!=item.brand
-        year.text!=item.year
+    func update(item:Car){
+        price.text = String(item.price)
+        location.text = item.location
+        status.text = item.status
+        gerbox.text = item.gearbox
+        gasType.text = String(item.gasType)
+        brand.text = item.brand
+        year.text = item.year
     }
 }

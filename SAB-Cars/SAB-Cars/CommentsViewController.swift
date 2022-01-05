@@ -16,6 +16,7 @@ class CommentsViewController: UIViewController {
     let userId=Auth.auth().currentUser?.uid
     var chatRoom = ""
     var photo=""
+    var desc=""
     
     fileprivate func deleteMessage() {
         let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
@@ -46,6 +47,7 @@ class CommentsViewController: UIViewController {
         if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)==""{
             design.useAlert(title: "", message: "no text", vc: self)
         } else{ sendMsg() }
+        
     }
     var dbStore = Firestore.firestore().collection("users")
     let ref=Database.database().reference().child("Comments")
@@ -66,19 +68,22 @@ class CommentsViewController: UIViewController {
                 let data = snapshot.documents.first!.data()
                 let fname = data["firstName"] as! String
                 let lname = data["lastName"] as! String
-                 fullname = fname + " " + lname
+                fullname = fname + " " + lname
                 let phoneNumber=(data["phoneNumber"]!) as! Int
                 let show=(data["showPhone"]!) as! Bool
                 if show == true{fullname = fname + " " + "\(phoneNumber)" }
-               
                 
-//                let liveChat2=Comment(id: fullname, date: "\(Date.now.formatted(.dateTime))", message: self.textField.text!)
-                let liveChat=["sender":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime), "userID":self.userId]
-                self.ref.child(self.chatRoom).childByAutoId().setValue(liveChat){(error,refernce)in
+                
+                let dbRef = self.ref.child(self.chatRoom).childByAutoId()
+                
+                let liveChat=["sender":fullname , "message":self.textField.text!, "date": Date.now.formatted(.dateTime), "userID":self.userId,"MsgID":dbRef.key]
+                
+                dbRef.setValue(liveChat){(error,refernce)in
+                    
                     if error != nil{
                         design.useAlert(title: "error", message: error!.localizedDescription, vc: self)
                     }
-                }
+                }; self.textField.text=""
             }
     }
     func readMsgs(){
@@ -86,10 +91,13 @@ class CommentsViewController: UIViewController {
         ref.child(chatRoom).observe(.childAdded) { snapshot in
             
             let result=snapshot.value as! Dictionary<String,String>
-            let sender=result["sender"]!
+            var sender=result["sender"]!
             let msg=result["message"]!
             let date=result["date"]!
-            let package=Comment(sender: sender, date: date, message: msg)
+            let user=result["userID"]!
+            let id=result["MsgID"]!
+            if user==self.userId{sender=" 👤 You"}
+            let package=Comment(sender: sender, date: date, message: msg,id:id, userID: user)
             
             self.messages.append(package)
             self.tableview.reloadData()
@@ -113,15 +121,18 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageTVC
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageVC
             cell.bigImage.imageFromURL(imagUrl: photo)
+            cell.carDescription.text=desc
             return cell
         }
         else{
             let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
-            
             let comment = messages[indexPath.row]
-            cell.setData(name: comment.getid(), msg: comment.getmessage(), date: comment.getdate())
+            if comment.userID == userId{
+                cell.changeNameToGray()
+            }
+            cell.setData(name: comment.getSender(), msg: comment.getmessage(), date: comment.getdate())
             
             return cell
         }
@@ -131,8 +142,8 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
         else{  return 120 }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let commitID=messages[indexPath.row]
-        print(commitID)
+//        let commitID=messages[indexPath.row]
+//        print(commitID)
     }
 }
 

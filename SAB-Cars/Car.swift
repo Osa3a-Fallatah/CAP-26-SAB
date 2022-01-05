@@ -4,9 +4,9 @@
 //
 //  Created by Osama folta on 16/05/1443 AH.
 //
+
+
 import FirebaseFirestoreSwift
-import Foundation
-import UIKit
 
 struct Car : Codable{
     @DocumentID var id:String? = ""
