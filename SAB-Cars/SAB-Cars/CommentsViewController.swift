@@ -58,7 +58,7 @@ class CommentsViewController: UIViewController {
         super.viewDidLoad()
         readMsgs()
         // Do any additional setup after loading the view.
-        tableview.register(UINib(nibName: "CarImageTVC", bundle: nil), forCellReuseIdentifier: "bannerid")
+        tableview.register(UINib(nibName: "CarImageVC", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     func sendMsg(){
         var fullname = ""

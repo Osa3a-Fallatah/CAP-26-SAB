@@ -21,12 +21,8 @@ class UserInfo{
             .getDocuments { snapshot, err in
                 do{
                     var user = User()
-                    guard let snapshot = snapshot else { return }
-                    let data = snapshot.documents.first!.data()
-                    let FN = (data["firstName"]!) as! String
-                    let LN = (data["lastName"]!) as! String
-                    user.firstName = FN
-                    user.lastName = LN
+                    guard let snapshot = snapshot?.documents else { return }
+                    user = try snapshot.first!.data(as:User.self)!
                     complation(user)
                 }catch{
                     print(err?.localizedDescription)
@@ -38,11 +34,11 @@ class UserInfo{
     func getCars(complation: @escaping (Car)->Void){
         dbStore.collection("Cars")
         .addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
+            if  err != nil {
                 
                 print("Error getting documents: \(err)")
             } else {
-                
+               
                 self.cars.removeAll()
                 for document in querySnapshot!.documents {
                     let carObj = try! document.data(as: Car.self)

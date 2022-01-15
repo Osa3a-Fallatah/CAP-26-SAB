@@ -9,16 +9,15 @@
 import FirebaseFirestoreSwift
 
 struct Car : Codable{
-    @DocumentID var id:String? = ""
-    var brand:String = ""
-    var gasType :String = ""
-    var gearbox:String = ""
-    var location:String = ""
-    var status:String = ""
-    var year:String = ""
-    var price:String = ""
-    var carImage:String = ""
-    var userID:String = ""
-    
+    @DocumentID var id:String? = String()
+    var brand = String()
+    var gasType = String()
+    var kilometeRreading = Int()
+    var gearbox = String()
+    var location = String()
+    var status = String()
+    var year = String()
+    var price = Int()
+    var carImage = String()
+    var userID = String()
 }
-

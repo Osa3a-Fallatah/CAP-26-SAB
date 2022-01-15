@@ -25,6 +25,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var testbutton: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var carimage: UIImageView!
+    @IBOutlet weak var kmReading: UITextField!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var year: UITextField!
@@ -105,7 +106,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
    
     func updateNewCar1(){
         if year.text! != "\(1975...2045)"{return}
-        let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!)
+        let carPrice = Int(price.text!) ?? 1
+        let kilometeRreading = Int(kmReading.text!) ?? 1
+        let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", kilometeRreading: kilometeRreading, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: carPrice, carImage: imgUrl, userID: userId!)
         
         do{
             let carid = dbStore.collection("Cars").document(newCar.id!)
@@ -115,21 +118,27 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
     
     func addNewCar(){
-            let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: price.text!, carImage: imgUrl, userID: userId!)
+         
+        let carPrice = Int(price.text!) ?? 0
+        let kilometeRreading = Int(kmReading.text!) ?? 0
+        let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", kilometeRreading: kilometeRreading, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: carPrice, carImage: imgUrl, userID: userId!)
+      
         
         do{
+            print("added succesfully")
             let _ = try dbStore.collection("Cars").addDocument(from: newCar)}catch{
                 design.useAlert(title: "Error Adding Document", message: " ", vc: self)
             }
     }
     func getCar(){
-        brand.text!=newCar.brand
+        brand.text=newCar.brand
         gasType.selectedSegmentIndex=newCar.gasType=="Gasoline" ? 0:1
         gearbox.selectedSegmentIndex=newCar.gearbox=="auto" ? 0:1
-        location.text!=newCar.location
-        status.text!=newCar.status
-        year.text!=newCar.year
-        price.text!=newCar.price
+        location.text=newCar.location
+        status.text=newCar.status
+        year.text=newCar.year
+        price.text=String(newCar.price)
+        kmReading.text=String(newCar.kilometeRreading)
     }
     var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
               ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"

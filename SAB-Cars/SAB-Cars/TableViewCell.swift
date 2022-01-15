@@ -13,7 +13,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var kmReading : UILabel!
     @IBOutlet weak var gerbox: UILabel!
     @IBOutlet weak var gasType: UILabel!
     @IBOutlet weak var brand: UILabel!
@@ -33,9 +33,9 @@ class TableViewCell: UITableViewCell {
     func update(item:Car){
         price.text = String(item.price)
         location.text = item.location
-        status.text = item.status
+        kmReading.text = String(item.kilometeRreading)
         gerbox.text = item.gearbox
-        gasType.text = String(item.gasType)
+        gasType.text = item.gasType
         brand.text = item.brand
         year.text = item.year
     }

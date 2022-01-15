@@ -22,7 +22,7 @@ class ChatTableViewCell: UITableViewCell {
     }
     func changeNameToGray(){
         lableForName.textColor = .lightGray
-        viewshap.backgroundColor = UIColor(red: 0.2, green: 0.6, blue: 0.1, alpha: 0.3)
+        viewshap.backgroundColor = UIColor(red: 0.2, green: 0.6, blue: 0.1, alpha: 0.1)
     }
 }
 
