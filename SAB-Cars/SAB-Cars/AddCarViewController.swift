@@ -5,25 +5,24 @@
 //  Created by Osama folta on 07/05/1443 AH.
 //
 import UIKit
-import Foundation
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
-    var imgUrl=""
-    var imgData = Data()
-    let dbStore = Firestore.firestore()
     var camera = UIImagePickerController()
     var dropList = UIPickerView()
-    var newCar = Car()
+    var imgUrl = String()
+    var imgData = Data()
     let userId = Auth.auth().currentUser?.uid
+    let dbStore = Firestore.firestore()
+    var newCar = Car()
     /*MARK: reference Type as Property Field in Firebase
      MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
     
-    @IBOutlet weak var testbutton: UIButton!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var testbutton: UIButton!
     @IBOutlet weak var carimage: UIImageView!
     @IBOutlet weak var kmReading: UITextField!
     @IBOutlet weak var location: UITextField!
@@ -33,7 +32,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var status: UITextView!
     @IBOutlet weak var gasType: UISegmentedControl!
     @IBOutlet weak var gearbox: UISegmentedControl!
-    @IBAction func forPicker(_ sender: Any) {
+    
+    @IBAction func forPicker(_ sender: UIGestureRecognizer) {
         self.view.endEditing(true)
     }
     
@@ -78,7 +78,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         self.activityIndicatorView.isHidden = false
         self.activityIndicatorView.startAnimating()
         let fbStorage = Storage.storage().reference()
-        let imgRef = fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
+        let imgRef =
+        // child(cars/uid/carid.png)
+        fbStorage.child("Cars/\(userId!)/\(dbStore.collection("Cars").document().documentID).png")
         
         imgRef.putData(data!, metadata: nil) { metadata, error in
             imgRef.downloadURL { url, error in
@@ -101,11 +103,10 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         camera.dismiss(animated: true, completion: nil)
         let image = (info[.originalImage] as! UIImage)
         self.carimage.image = image
-        imgData = image.jpegData(compressionQuality: 0.05)!
+        imgData = image.jpegData(compressionQuality: 0.1)!
     }
    
     func updateNewCar1(){
-        if year.text! != "\(1975...2045)"{return}
         let carPrice = Int(price.text!) ?? 1
         let kilometeRreading = Int(kmReading.text!) ?? 1
         let carToUpdate = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", kilometeRreading: kilometeRreading, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: carPrice, carImage: imgUrl, userID: userId!)

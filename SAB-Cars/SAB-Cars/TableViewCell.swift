@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class TableViewCell: UITableViewCell {
     

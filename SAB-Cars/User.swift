@@ -9,10 +9,10 @@ import FirebaseFirestoreSwift
 
 
 struct User:Codable {
-    var uid:String=""
-    var firstName:String=""
-    var lastName:String=""
-    var phoneNumber:Int=0
-    var showPhone=false
+    var uid = String ()
+    var firstName = String ()
+    var lastName = String ()
+    var phoneNumber = Int ()
+    var showPhone = false
     
 }

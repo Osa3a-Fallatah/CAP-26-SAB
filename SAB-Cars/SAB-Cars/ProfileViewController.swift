@@ -22,9 +22,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var visiblePhoneNumber: UISegmentedControl!
     @IBAction func saveButton(_ sender: Any) {
         
-        if ((firstName.text!.trimmingCharacters(in: .whitespaces)=="" || (firstName.text!.count<3)) &&
-            (lastName.text?.trimmingCharacters(in: .whitespaces)=="") || (lastName.text!.count<3)  &&
-            (phoneProfile.text!.count == 10) || (phoneProfile.text?.trimmingCharacters(in: .whitespaces)=="")){
+        if ((firstName.text!.trimmingCharacters(in: .whitespaces) == "" || (firstName.text!.count<3)) &&
+            (lastName.text?.trimmingCharacters(in: .whitespaces) == "") || (lastName.text!.count<3)  &&
+            (phoneProfile.text!.count == 10) || (phoneProfile.text?.trimmingCharacters(in: .whitespaces) == "")){
             design.useAlert(title: "Error", message: "please chek your info", vc: self)
             
         }else {
@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
         }
     }
     override func viewDidLoad() {
-        
+        back.isHidden = true
         super.viewDidLoad()
         save.layer.cornerRadius = 10
         save.layer.borderWidth = 1
@@ -50,10 +50,10 @@ class ProfileViewController: UIViewController {
         
         dbStore.collection("users").document(userId).getDocument { snap , err  in
             guard let snap = snap else { return }
-            let data = snap.data()
-            let phone = (data!["phoneNumber"]) as! Int
-            let  firstName = (data!["firstName"]) as! String
-            let lastName = (data!["lastName"]) as! String
+            guard let data = snap.data() else {return}
+            let phone = (data["phoneNumber"]) as! Int
+            let  firstName = (data["firstName"]) as! String
+            let lastName = (data["lastName"]) as! String
             
             self.firstName.text=firstName
             self.lastName.text=lastName
@@ -61,6 +61,10 @@ class ProfileViewController: UIViewController {
             
         }
     }
-
+    @IBAction func backHome(_ sender: Any) {
+        performSegue(withIdentifier: "home", sender: self)
+    }
+    @IBOutlet weak var back: UIButton!
+    
 }
 

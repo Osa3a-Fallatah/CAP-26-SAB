@@ -10,9 +10,9 @@ import Firebase
 import UIKit
 
 class UserCommentsVC : UIViewController ,UITableViewDelegate,UITableViewDataSource  {
-    var messages = [Comment]()
     let db = Database.database().reference()
     let userId=Auth.auth().currentUser?.uid
+    var messages = [Comment]()
     @IBOutlet weak var tableView: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

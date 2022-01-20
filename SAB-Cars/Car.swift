@@ -8,7 +8,7 @@
 
 import FirebaseFirestoreSwift
 
-struct Car : Codable{
+struct Car : Codable {
     @DocumentID var id:String? = String()
     var brand = String()
     var gasType = String()

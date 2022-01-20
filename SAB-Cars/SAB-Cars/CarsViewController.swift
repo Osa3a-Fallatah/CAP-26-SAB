@@ -5,9 +5,8 @@
 //  Created by Osama folta on 07/05/1443 AH.
 //
 import Firebase
-import FirebaseFirestoreSwift
-import FirebaseAuth
 import FirebaseFirestore
+import FirebaseCore
 import UIKit
 
 class CarsViewController: UIViewController {
@@ -59,8 +58,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         
         cell.update(item: car)
         cell.setCellConfig()
-        
-        cell.updateButton.isHidden = car.userID != Auth.auth().currentUser?.uid
+        cell.updateButton.isHidden = (car.userID != Auth.auth().currentUser?.uid)
         cell.updateButton.tag = indexPath.row
         cell.updateButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         cell.carImg.imageFromURL(imagUrl: cars[indexPath.row].carImage)
@@ -71,16 +69,16 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         
         let indexpath = IndexPath(row: sender.tag, section: 1)
         let cell = cars[indexpath.row]
-        let next:AddCarViewController=self.storyboard?.instantiateViewController(withIdentifier: "next") as! AddCarViewController
+        guard let next:AddCarViewController = self.storyboard?.instantiateViewController(withIdentifier: "next") as? AddCarViewController else {return}
         next.newCar = cell
         self.navigationController?.pushViewController(next, animated: true)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indx = cars[indexPath.row].id
+        guard let indx = cars[indexPath.row].id else {return}
         let imageCar = cars[indexPath.row].carImage
         
-        let showvc = (storyboard?.instantiateViewController(withIdentifier: "carChat"))! as! CommentsViewController
-        showvc.chatRoom = indx!
+        guard  let showvc = storyboard?.instantiateViewController(withIdentifier: "carChat") as? CommentsViewController else {return }
+        showvc.chatRoom = indx
         showvc.photo = imageCar
         showvc.desc=cars[indexPath.row].status
         navigationController?.pushViewController(showvc, animated: true)

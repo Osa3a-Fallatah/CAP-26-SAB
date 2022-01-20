@@ -48,4 +48,7 @@ class RegisterViewController: UIViewController {
             let _ = try dbStore.collection("users").document(userId).setData(from: newUser)
         }catch{print(error.localizedDescription)}
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 }

@@ -7,11 +7,11 @@
 import FirebaseFirestoreSwift
 
 struct Comment :Codable{
-    var sender :String=""
-    var date : String=""
-    var message:String=""
-    var id:String=""
-    var userID:String=""
+    var sender = String()
+    var date = String()
+    var message = String()
+    var id = String()
+    var userID = String()
     
     func getUserID()->String{
         userID

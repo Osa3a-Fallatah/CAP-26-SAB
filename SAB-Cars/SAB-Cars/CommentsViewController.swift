@@ -4,25 +4,28 @@
 //
 //  Created by Osama folta on 14/05/1443 AH.
 //
+import FirebaseAuth
 import FirebaseFirestore
 import Firebase
-import FirebaseMessaging
 import UIKit
 
 class CommentsViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var textField: UITextField!
-    let userId=Auth.auth().currentUser?.uid
-    var chatRoom = ""
-    var photo=""
-    var desc=""
+    let userId = Auth.auth().currentUser?.uid
+    var chatRoom = String()
+    var photo = String()
+    var desc = String()
     
     fileprivate func deleteMessage() {
         let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler:{(action) in
             Database.database().reference().child("Comments").child(self.chatRoom).removeValue()
+            self.messages.removeAll()
+            self.tableview.reloadData()
+            
         }))
         present(alert, animated: true, completion: nil)
     }
@@ -37,6 +40,7 @@ class CommentsViewController: UIViewController {
                     if (Auth.auth().currentUser?.uid == uid) {
                         print ("Can Delete")
                         self.deleteMessage()
+                        
                     }
                 }
             }
@@ -44,13 +48,13 @@ class CommentsViewController: UIViewController {
         
     }
     @IBAction func sendButton(_ sender: Any) {
-        if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)==""{
+        if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             design.useAlert(title: "", message: "no text", vc: self)
         } else{ sendMsg() }
         
     }
     var dbStore = Firestore.firestore().collection("users")
-    let ref=Database.database().reference().child("Comments")
+    let ref = Database.database().reference().child("Comments")
     var messages = [Comment]()
     
     override func viewDidLoad() {
@@ -61,7 +65,7 @@ class CommentsViewController: UIViewController {
         tableview.register(UINib(nibName: "CarImageVC", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     func sendMsg(){
-        var fullname = ""
+        var fullname = String ()
         dbStore.whereField("uid", isEqualTo: Auth.auth().currentUser!.uid)
             .getDocuments { snapshot, err in
                 guard let snapshot = snapshot else { return }
@@ -89,7 +93,7 @@ class CommentsViewController: UIViewController {
     func readMsgs(){
         
         ref.child(chatRoom).observe(.childAdded) { snapshot in
-            
+           
             let result=snapshot.value as! Dictionary<String,String>
             var sender=result["sender"]!
             let msg=result["message"]!

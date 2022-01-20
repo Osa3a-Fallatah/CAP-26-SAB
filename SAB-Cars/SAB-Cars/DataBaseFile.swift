@@ -7,7 +7,6 @@
 
 import Firebase
 import FirebaseStorage
-import FirebaseMessaging
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -25,7 +24,7 @@ class UserInfo{
                     user = try snapshot.first!.data(as:User.self)!
                     complation(user)
                 }catch{
-                    print(err?.localizedDescription)
+                    print(err!.localizedDescription)
                 }
                 
             }
@@ -36,7 +35,7 @@ class UserInfo{
         .addSnapshotListener { (querySnapshot, err) in
             if  err != nil {
                 
-                print("Error getting documents: \(err)")
+                print("Error getting documents: \(err!)")
             } else {
                
                 self.cars.removeAll()

@@ -23,14 +23,14 @@ class LoginViewController: UIViewController {
         buttonLayout1.layer.borderWidth = 1
         self.navigationItem.leftBarButtonItems?.removeAll()
         design.chageColore(view)
-        if Auth.auth().currentUser != nil{
-            performSegue(withIdentifier: "homepage", sender: self)
-        }
+//        if Auth.auth().currentUser != nil{
+//            performSegue(withIdentifier: "homepage", sender: self)
+//        }
         
     }
     func logIn(){
-        let email = emailTextField.text!
-        let pass = passwordTextField.text!
+        guard let email = emailTextField.text else {return}
+        guard let pass = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail:email, password:pass) { result, error in
             if error == nil {
                 self.performSegue(withIdentifier: "homepage", sender: self)
