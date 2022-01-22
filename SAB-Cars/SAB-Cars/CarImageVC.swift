@@ -9,6 +9,7 @@ import UIKit
 
 class CarImageVC: UITableViewCell {
     
+    @IBOutlet weak var brand: UILabel!
     @IBOutlet weak var carDescription: UILabel!
     @IBOutlet weak var bigImage: UIImageView!
   
@@ -22,6 +23,5 @@ class CarImageVC: UITableViewCell {
         
         // Configure the view for the selected state
     }
-    
 }
 

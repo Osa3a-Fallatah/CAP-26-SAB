@@ -8,5 +8,7 @@
 import UIKit
 
 class SearchCollectionVC: UICollectionViewCell {
-    
+    @IBOutlet weak var lablText: UILabel!
+
+    @IBOutlet weak var image: UIImageView!
 }

@@ -1,6 +1,6 @@
 
 /* Class = "UIButton"; configuration.title = "Save"; ObjectID = "3gP-aY-yMS"; */
-"3gP-aY-yMS.configuration.title" = "حفظ";
+"3gP-aY-yMS.configuration.title" = "Save";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "3gP-aY-yMS"; */
 "3gP-aY-yMS.normalTitle" = "Button";
@@ -38,8 +38,14 @@
 /* Class = "UITextField"; text = "madina"; ObjectID = "FEz-ez-b4O"; */
 "FEz-ez-b4O.text" = "madina";
 
-/* Class = "UILabel"; text = "status"; ObjectID = "HbO-Kp-TJD"; */
-"HbO-Kp-TJD.text" = "status";
+/* Class = "UIButton"; configuration.title = "Home"; ObjectID = "FcK-SD-poD"; */
+"FcK-SD-poD.configuration.title" = "Home";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FcK-SD-poD"; */
+"FcK-SD-poD.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Km : "; ObjectID = "Hx9-0G-pjK"; */
+"Hx9-0G-pjK.text" = "Km : ";
 
 /* Class = "UIButton"; configuration.title = "New User"; ObjectID = "JZW-rG-FK8"; */
 "JZW-rG-FK8.configuration.title" = "New User";
@@ -77,6 +83,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Sz6-Zi-r3q"; */
 "Sz6-Zi-r3q.text" = "Label";
 
+/* Class = "UIBarButtonItem"; title = "main"; ObjectID = "TZo-X3-Ppd"; */
+"TZo-X3-Ppd.title" = "main";
+
 /* Class = "UILabel"; text = "Gear :"; ObjectID = "TeN-pl-nbQ"; */
 "TeN-pl-nbQ.text" = "Gear :";
 
@@ -89,6 +98,9 @@
 /* Class = "UISegmentedControl"; UFf-p0-T6a.segmentTitles[1] = "Manual"; ObjectID = "UFf-p0-T6a"; */
 "UFf-p0-T6a.segmentTitles[1]" = "Manual";
 
+/* Class = "UILabel"; text = "Location :"; ObjectID = "V7q-z7-ov0"; */
+"V7q-z7-ov0.text" = "Location :";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "VCI-36-L7i"; */
 "VCI-36-L7i.text" = "Label";
 
@@ -97,6 +109,9 @@
 
 /* Class = "UITextField"; text = "2020"; ObjectID = "WX7-FC-tV3"; */
 "WX7-FC-tV3.text" = "2020";
+
+/* Class = "UILabel"; text = "Year :"; ObjectID = "Xfd-pE-vta"; */
+"Xfd-pE-vta.text" = "Year :";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "YnU-tV-nZr"; */
 "YnU-tV-nZr.text" = "Subtitle";
@@ -112,6 +127,9 @@
 
 /* Class = "UITextField"; text = "last name"; ObjectID = "arQ-uT-plv"; */
 "arQ-uT-plv.text" = "last name";
+
+/* Class = "UILabel"; text = "km"; ObjectID = "bFF-lz-Xde"; */
+"bFF-lz-Xde.text" = "km";
 
 /* Class = "UILabel"; text = "price"; ObjectID = "cUa-We-m9w"; */
 "cUa-We-m9w.text" = "price";
@@ -155,8 +173,8 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "igm-sF-eNY"; */
 "igm-sF-eNY.text" = "Title";
 
-/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "iiP-JO-rEU"; */
-"iiP-JO-rEU.title" = "Item";
+/* Class = "UIBarButtonItem"; title = "welcome"; ObjectID = "iiP-JO-rEU"; */
+"iiP-JO-rEU.title" = "welcome";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "jx3-5Y-Xrg"; */
 "jx3-5Y-Xrg.text" = "Subtitle";
@@ -169,6 +187,15 @@
 
 /* Class = "UITextField"; placeholder = "-Message- "; ObjectID = "mh8-GF-JMz"; */
 "mh8-GF-JMz.placeholder" = "-Message- ";
+
+/* Class = "UILabel"; text = "Price :"; ObjectID = "pAI-8C-NDx"; */
+"pAI-8C-NDx.text" = "Price :";
+
+/* Class = "UIButton"; configuration.title = ".."; ObjectID = "qNo-XU-rvQ"; */
+"qNo-XU-rvQ.configuration.title" = "..";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "qNo-XU-rvQ"; */
+"qNo-XU-rvQ.normalTitle" = "Button";
 
 /* Class = "UITextField"; placeholder = "E-mail"; ObjectID = "s3z-s8-Dta"; */
 "s3z-s8-Dta.placeholder" = "E-mail";
@@ -193,6 +220,9 @@
 
 /* Class = "UITextField"; text = "osama123"; ObjectID = "vwE-3W-pBa"; */
 "vwE-3W-pBa.text" = "osama123";
+
+/* Class = "UITextField"; placeholder = "kilometeRreading"; ObjectID = "xlK-wb-Euf"; */
+"xlK-wb-Euf.placeholder" = "kilometeRreading";
 
 /* Class = "UILabel"; text = "location"; ObjectID = "z7Y-8z-Wqx"; */
 "z7Y-8z-Wqx.text" = "location";

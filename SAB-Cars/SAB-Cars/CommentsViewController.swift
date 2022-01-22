@@ -16,7 +16,7 @@ class CommentsViewController: UIViewController {
     let userId = Auth.auth().currentUser?.uid
     var chatRoom = String()
     var photo = String()
-    var desc = String()
+    var carObject = Car()
     
     fileprivate func deleteMessage() {
         let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
@@ -49,7 +49,7 @@ class CommentsViewController: UIViewController {
     }
     @IBAction func sendButton(_ sender: Any) {
         if textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            design.useAlert(title: "", message: "no text", vc: self)
+            design.useAlert(title: "Wrong Action", message: "No Text", vc: self)
         } else{ sendMsg() }
         
     }
@@ -127,7 +127,8 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
         if indexPath.section == 0 {
             let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageVC
             cell.bigImage.imageFromURL(imagUrl: photo)
-            cell.carDescription.text=desc
+            cell.carDescription.text = carObject.status
+            cell.brand.text = carObject.brand
             return cell
         }
         else{

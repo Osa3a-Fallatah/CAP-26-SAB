@@ -24,7 +24,7 @@ class UserInfo{
                     user = try snapshot.first!.data(as:User.self)!
                     complation(user)
                 }catch{
-                    print(err!.localizedDescription)
+                    print(err?.localizedDescription ?? "error")
                 }
                 
             }
@@ -44,7 +44,6 @@ class UserInfo{
                     self.cars.append(carObj!)
                     complation(carObj!)
                 }
-                
             }
         }
     }

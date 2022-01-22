@@ -84,7 +84,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         
         imgRef.putData(data!, metadata: nil) { metadata, error in
             imgRef.downloadURL { url, error in
-                self.imgUrl = (url?.absoluteString) as! String
+                guard let urlString = url else {return}
+                self.imgUrl = (urlString.absoluteString)
                 //MARK: update or add
                 if self.newCar.id!.isEmpty == true{self.addNewCar()}
                 else{self.updateNewCar1()}

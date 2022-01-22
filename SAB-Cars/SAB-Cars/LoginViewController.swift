@@ -23,9 +23,9 @@ class LoginViewController: UIViewController {
         buttonLayout1.layer.borderWidth = 1
         self.navigationItem.leftBarButtonItems?.removeAll()
         design.chageColore(view)
-//        if Auth.auth().currentUser != nil{
-//            performSegue(withIdentifier: "homepage", sender: self)
-//        }
+        if Auth.auth().currentUser != nil{
+            performSegue(withIdentifier: "homepage", sender: self)
+        }
         
     }
     func logIn(){

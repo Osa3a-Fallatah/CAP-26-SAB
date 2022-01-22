@@ -41,10 +41,7 @@ class CarsViewController: UIViewController {
        }
        
     }
-    override func viewWillAppear(_ animated: Bool) {
-        table.reloadData()
-        
-    }
+
 }
 
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
@@ -74,13 +71,12 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
         self.navigationController?.pushViewController(next, animated: true)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let indx = cars[indexPath.row].id else {return}
         let imageCar = cars[indexPath.row].carImage
         
         guard  let showvc = storyboard?.instantiateViewController(withIdentifier: "carChat") as? CommentsViewController else {return }
-        showvc.chatRoom = indx
+        showvc.chatRoom = cars[indexPath.row].id ?? "error"
         showvc.photo = imageCar
-        showvc.desc=cars[indexPath.row].status
+        showvc.carObject = cars[indexPath.row]
         navigationController?.pushViewController(showvc, animated: true)
     }
     
@@ -92,6 +88,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.dbStore.collection("Cars").document(itemToDelete.id!).delete()
             self.db.child("Comments").child(itemToDelete.id!).removeValue()
+            cars.removeAll()
             tableView.reloadData()
         }
     }
@@ -108,7 +105,7 @@ extension UIImageView {
         let imageURL = URL(string:imagUrl)!
         
         if let imgCached = imgCache.object(forKey: imagUrl as NSString) {
-            self.image = imgCached as! UIImage
+            self.image = imgCached as? UIImage
             return
         }
         
