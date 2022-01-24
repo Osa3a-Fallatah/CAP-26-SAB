@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ChatTableViewCell: UITableViewCell {
-
+class ChatCell: UITableViewCell {
+    
     @IBOutlet weak var viewshap: UIView!    
     @IBOutlet weak var lablForText: UILabel!
     @IBOutlet weak var lableForName: UILabel!

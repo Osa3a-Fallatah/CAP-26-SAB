@@ -21,10 +21,10 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var carImg: UIImageView!
- 
+    
     
     func setCellConfig(){
-
+        
         viewShape.layer.cornerRadius = 20
         carphoto.layer.cornerRadius = 15
     }

@@ -22,7 +22,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
      MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak var testbutton: UIButton!
     @IBOutlet weak var carimage: UIImageView!
     @IBOutlet weak var kmReading: UITextField!
     @IBOutlet weak var location: UITextField!
@@ -40,13 +39,13 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBAction func uploadPhotos(_ sender: Any) {
         let alart = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alart.addAction(UIAlertAction(title: "Camera", style: .default, handler: {[self] _ in
-            
+            self.camera.allowsEditing = true
             self.camera.sourceType = .camera
             present(camera, animated: true, completion: nil)
         }))
         
         alart.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {[self] _ in
-            
+            self.camera.allowsEditing = true
             self.camera.sourceType = .photoLibrary
             present(camera, animated: true, completion: nil)
             
@@ -104,9 +103,9 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         camera.dismiss(animated: true, completion: nil)
         let image = (info[.originalImage] as! UIImage)
         self.carimage.image = image
-        imgData = image.jpegData(compressionQuality: 0.1)!
+        imgData = image.jpegData(compressionQuality: 0.3)!
     }
-   
+    
     func updateNewCar1(){
         let carPrice = Int(price.text!) ?? 1
         let kilometeRreading = Int(kmReading.text!) ?? 1
@@ -120,11 +119,11 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     }
     
     func addNewCar(){
-         
+        
         let carPrice = Int(price.text!) ?? 0
         let kilometeRreading = Int(kmReading.text!) ?? 0
         let newCar = Car(brand: brand.text!, gasType: gasType.selectedSegmentIndex==0 ? "Gasoline":"Diesel", kilometeRreading: kilometeRreading, gearbox: gearbox.selectedSegmentIndex==0 ? "auto":"manual", location: location.text!, status: status.text!, year: year.text!, price: carPrice, carImage: imgUrl, userID: userId!)
-      
+        
         
         do{
             print("added succesfully")
@@ -145,7 +144,7 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
               ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"
               ,"Infiniti", "Fiat","Dodge","Bentley","Chevrolet","Land-rover","Mitsubishi"
-              ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS"]
+              ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS","MG"]
 }
 
 extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
@@ -163,11 +162,11 @@ extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
         return List[row]
     }
     func savedDocAlert(){
-               let alert = UIAlertController(title: "Successfully Added", message: "", preferredStyle: UIAlertController.Style.alert)
-               alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                 let out =  self.storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
-                   self.navigationController?.pushViewController(out, animated: false)
-                        }))
-               self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Successfully Added", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+            let out =  self.storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
+            self.navigationController?.pushViewController(out, animated: false)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }

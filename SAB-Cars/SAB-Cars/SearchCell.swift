@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchCollectionVC: UICollectionViewCell {
+class SearchCell: UICollectionViewCell {
     @IBOutlet weak var lablText: UILabel!
 
     @IBOutlet weak var image: UIImageView!

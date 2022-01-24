@@ -23,23 +23,23 @@ class UserCommentsVC : UIViewController ,UITableViewDelegate,UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellA", for: indexPath)
         cell.textLabel?.text=messages[indexPath.row].getmessage()
         cell.detailTextLabel?.text=messages[indexPath.row].getdate()
-return cell
+        return cell
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = self.messages[indexPath.row]
             messages.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-
+            
             db.child("Comments").observe(.childAdded) { snap in
                 let s = snap.key
                 self.db.child("Comments").child(s).child(item.id).removeValue()
-            
+                
             }
             tableView.reloadData()
         }
     }
-   
+    
     override func viewDidLoad() {
         readMsgs()
         design.chageColore(view)
@@ -59,16 +59,16 @@ return cell
                 let id=result["MsgID"]!
                 let package=Comment(sender: sender, date: date, message: msg, id: id, userID: user)
                 if user == self.userId{
-                self.messages.append(package)
+                    self.messages.append(package)
                     if self.messages.count==0{self.tableView.alpha=0.7}
                 }
                 self.tableView.reloadData()
-               
-               
-
+                
+                
+                
             }
-           
-           
+            
+            
         }
     }
 }
@@ -97,8 +97,8 @@ class UserCarsVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
         cell.textLabel?.text=cars[indexPath.row].brand
         cell.detailTextLabel?.text="Price: \(cars[indexPath.row].price)"
         cell.imageView?.imageFromURL(imagUrl: cars[indexPath.row].carImage)
-        cell.imageView?.frame = CGRect(x: 10,y: 0,width: 40,height: 40)
-return cell
+        // cell.imageView?.frame = CGRect(x: 10,y: 0,width: 40,height: 40)
+        return cell
     }
     func getInfo(){
         UserInfo.shared.getCars { car in
@@ -112,6 +112,7 @@ return cell
     override func viewDidLoad() {
         design.chageColore(view)
         getInfo()
-      
+        
     }
+    
 }

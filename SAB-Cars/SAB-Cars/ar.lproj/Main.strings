@@ -1,4 +1,13 @@
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "1D3-Tc-NVg"; */
+"1D3-Tc-NVg.text" = "Label";
+
+/* Class = "UILabel"; text = "location :"; ObjectID = "1nE-0Q-M39"; */
+"1nE-0Q-M39.text" = "location :";
+
+/* Class = "UILabel"; text = "status"; ObjectID = "38m-Qw-CDH"; */
+"38m-Qw-CDH.text" = "status";
+
 /* Class = "UIButton"; configuration.title = "Save"; ObjectID = "3gP-aY-yMS"; */
 "3gP-aY-yMS.configuration.title" = "Save";
 
@@ -11,6 +20,9 @@
 /* Class = "UITextField"; text = "NAME"; ObjectID = "499-sb-szD"; */
 "499-sb-szD.text" = "NAME";
 
+/* Class = "UILabel"; text = "year :"; ObjectID = "7gZ-DG-ROd"; */
+"7gZ-DG-ROd.text" = "year :";
+
 /* Class = "UIBarButtonItem"; title = "signOut"; ObjectID = "ASu-et-u5b"; */
 "ASu-et-u5b.title" = "signOut";
 
@@ -22,6 +34,12 @@
 
 /* Class = "UILabel"; text = "⌛️💰🌍"; ObjectID = "BY1-2Z-Jhf"; */
 "BY1-2Z-Jhf.text" = "⌛️💰🌍";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Cpp-NV-NDT"; */
+"Cpp-NV-NDT.text" = "Label";
+
+/* Class = "UILabel"; text = "price :"; ObjectID = "EQj-KM-3Je"; */
+"EQj-KM-3Je.text" = "price :";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "EXV-sC-J0c"; */
 "EXV-sC-J0c.title" = "Back";
@@ -43,6 +61,12 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FcK-SD-poD"; */
 "FcK-SD-poD.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Gng-9w-fqZ"; */
+"Gng-9w-fqZ.text" = "Label";
+
+/* Class = "UILabel"; text = "Fuel :"; ObjectID = "HMS-G0-TVw"; */
+"HMS-G0-TVw.text" = "Fuel :";
 
 /* Class = "UILabel"; text = "Km : "; ObjectID = "Hx9-0G-pjK"; */
 "Hx9-0G-pjK.text" = "Km : ";
@@ -70,6 +94,9 @@
 
 /* Class = "UILabel"; text = "Year"; ObjectID = "PKI-XL-1Yf"; */
 "PKI-XL-1Yf.text" = "Year";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QmY-jA-ke8"; */
+"QmY-jA-ke8.text" = "Label";
 
 /* Class = "UIButton"; configuration.title = "upload Photos"; ObjectID = "RLc-gO-ZSh"; */
 "RLc-gO-ZSh.configuration.title" = "upload Photos";
@@ -103,6 +130,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "VCI-36-L7i"; */
 "VCI-36-L7i.text" = "Label";
+
+/* Class = "UILabel"; text = "Gearbox :"; ObjectID = "W8T-Y9-SDj"; */
+"W8T-Y9-SDj.text" = "Gearbox :";
 
 /* Class = "UITextField"; placeholder = "Year"; ObjectID = "WX7-FC-tV3"; */
 "WX7-FC-tV3.placeholder" = "Year";
@@ -167,6 +197,9 @@
 /* Class = "UILabel"; text = "gasType"; ObjectID = "hfc-Eb-TRN"; */
 "hfc-Eb-TRN.text" = "gasType";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "hxv-QX-BAe"; */
+"hxv-QX-BAe.text" = "Label";
+
 /* Class = "UILabel"; text = "gerbox"; ObjectID = "iMo-dc-5ff"; */
 "iMo-dc-5ff.text" = "gerbox";
 
@@ -203,11 +236,20 @@
 /* Class = "UILabel"; text = "name"; ObjectID = "sJG-TK-5ih"; */
 "sJG-TK-5ih.text" = "name";
 
+/* Class = "UILabel"; text = "km :"; ObjectID = "sam-8h-Avz"; */
+"sam-8h-Avz.text" = "km :";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tD7-UD-0vN"; */
 "tD7-UD-0vN.text" = "Title";
 
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "tPS-39-DJr"; */
 "tPS-39-DJr.title" = "Item";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "txw-qQ-YUm"; */
+"txw-qQ-YUm.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "u2t-dw-ZTE"; */
+"u2t-dw-ZTE.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "uDw-Fj-KTo"; */
 "uDw-Fj-KTo.placeholder" = "Password";

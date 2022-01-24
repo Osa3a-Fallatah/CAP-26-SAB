@@ -24,7 +24,8 @@ class LoginViewController: UIViewController {
         self.navigationItem.leftBarButtonItems?.removeAll()
         design.chageColore(view)
         if Auth.auth().currentUser != nil{
-            performSegue(withIdentifier: "homepage", sender: self)
+            let showvc = storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
+            navigationController?.show(showvc, sender: self)
         }
         
     }
@@ -33,10 +34,12 @@ class LoginViewController: UIViewController {
         guard let pass = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail:email, password:pass) { result, error in
             if error == nil {
-                self.performSegue(withIdentifier: "homepage", sender: self)
+                let showvc = self.storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
+                self.navigationController?.show(showvc, sender: self)
             }  else {
                 design.useAlert(title: "Error", message: error!.localizedDescription, vc: self)
             }
         }
     }    
 }
+

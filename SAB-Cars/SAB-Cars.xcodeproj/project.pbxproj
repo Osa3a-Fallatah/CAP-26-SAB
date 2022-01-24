@@ -22,7 +22,7 @@
 		881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10EC2764E0A000A8FB19 /* TableViewCell.swift */; };
 		881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */; };
 		881C10F427652E2900A8FB19 /* design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881C10F327652E2800A8FB19 /* design.swift */; };
-		882C235B27863104007BD81D /* SearchCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C235A27863104007BD81D /* SearchCollectionVC.swift */; };
+		882C235B27863104007BD81D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C235A27863104007BD81D /* SearchCell.swift */; };
 		882C235D2786312C007BD81D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C235C2786312C007BD81D /* SearchViewController.swift */; };
 		883C1CA727824ED400BD6512 /* DataBaseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883C1CA627824ED400BD6512 /* DataBaseFile.swift */; };
 		88403D592770865D00496E7D /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D582770865D00496E7D /* Car.swift */; };
@@ -31,11 +31,12 @@
 		88403D682771DD2A00496E7D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88403D672771DD2A00496E7D /* DetailsViewController.swift */; };
 		88648581276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 88648580276C87CA0064BE93 /* FirebaseFirestoreSwift-Beta */; };
 		88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648582276E277C0064BE93 /* CommentsViewController.swift */; };
-		88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648584276E4E660064BE93 /* ChatTableViewCell.swift */; };
+		88648585276E4E660064BE93 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88648584276E4E660064BE93 /* ChatCell.swift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
-		88BB30152777A7F500061D2D /* CarImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB30132777A7F500061D2D /* CarImageVC.swift */; };
-		88BB30162777A7F500061D2D /* CarImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BB30142777A7F500061D2D /* CarImageVC.xib */; };
+		88BB30152777A7F500061D2D /* CarImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB30132777A7F500061D2D /* CarImageCell.swift */; };
+		88BB30162777A7F500061D2D /* CarImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BB30142777A7F500061D2D /* CarImageCell.xib */; };
 		88E606472773AD0100468EDD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 88E606462773AD0100468EDD /* FirebaseStorage */; };
+		88E66456279E842F00456072 /* BigImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E66455279E842F00456072 /* BigImageVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,7 @@
 		881C10EC2764E0A000A8FB19 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		881C10F127650A9C00A8FB19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		881C10F327652E2800A8FB19 /* design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = design.swift; path = ../design.swift; sourceTree = "<group>"; };
-		882C235A27863104007BD81D /* SearchCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionVC.swift; sourceTree = "<group>"; };
+		882C235A27863104007BD81D /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		882C235C2786312C007BD81D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		883C1CA627824ED400BD6512 /* DataBaseFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseFile.swift; sourceTree = "<group>"; };
 		88403D582770865D00496E7D /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
@@ -61,12 +62,14 @@
 		88403D5C2770870700496E7D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		88403D672771DD2A00496E7D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		88648582276E277C0064BE93 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
-		88648584276E4E660064BE93 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatTableViewCell.swift; path = ../ChatTableViewCell.swift; sourceTree = "<group>"; };
+		88648584276E4E660064BE93 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = ../ChatCell.swift; sourceTree = "<group>"; };
 		8873B52B2785A06E0000F0A3 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		887C60CE279AAF7200915D83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		88BB30132777A7F500061D2D /* CarImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageVC.swift; sourceTree = "<group>"; };
-		88BB30142777A7F500061D2D /* CarImageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageVC.xib; sourceTree = "<group>"; };
+		88BB30132777A7F500061D2D /* CarImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCell.swift; sourceTree = "<group>"; };
+		88BB30142777A7F500061D2D /* CarImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageCell.xib; sourceTree = "<group>"; };
+		88E66455279E842F00456072 /* BigImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BigImageVC.swift; path = ../BigImageVC.swift; sourceTree = "<group>"; };
+		88E66458279E912000456072 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,10 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
-				88BB30132777A7F500061D2D /* CarImageVC.swift */,
-				88BB30142777A7F500061D2D /* CarImageVC.xib */,
-				88648584276E4E660064BE93 /* ChatTableViewCell.swift */,
-				882C235A27863104007BD81D /* SearchCollectionVC.swift */,
+				88BB30132777A7F500061D2D /* CarImageCell.swift */,
+				88BB30142777A7F500061D2D /* CarImageCell.xib */,
+				88648584276E4E660064BE93 /* ChatCell.swift */,
+				882C235A27863104007BD81D /* SearchCell.swift */,
 				881C10C92764AD7F00A8FB19 /* Main.storyboard */,
 			);
 			name = View;
@@ -164,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				882C235C2786312C007BD81D /* SearchViewController.swift */,
+				88E66455279E842F00456072 /* BigImageVC.swift */,
 				881C10C72764AD7F00A8FB19 /* CarsViewController.swift */,
 				881C10E82764E00100A8FB19 /* AddCarViewController.swift */,
 				88648582276E277C0064BE93 /* CommentsViewController.swift */,
@@ -245,7 +249,7 @@
 			files = (
 				881C10D02764AD8000A8FB19 /* LaunchScreen.storyboard in Resources */,
 				881C10F227650A9C00A8FB19 /* GoogleService-Info.plist in Resources */,
-				88BB30162777A7F500061D2D /* CarImageVC.xib in Resources */,
+				88BB30162777A7F500061D2D /* CarImageCell.xib in Resources */,
 				881C10CD2764AD8000A8FB19 /* Assets.xcassets in Resources */,
 				881C10CB2764AD7F00A8FB19 /* Main.storyboard in Resources */,
 			);
@@ -260,9 +264,10 @@
 			files = (
 				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
-				882C235B27863104007BD81D /* SearchCollectionVC.swift in Sources */,
-				88BB30152777A7F500061D2D /* CarImageVC.swift in Sources */,
+				882C235B27863104007BD81D /* SearchCell.swift in Sources */,
+				88BB30152777A7F500061D2D /* CarImageCell.swift in Sources */,
 				882C235D2786312C007BD81D /* SearchViewController.swift in Sources */,
+				88E66456279E842F00456072 /* BigImageVC.swift in Sources */,
 				88403D682771DD2A00496E7D /* DetailsViewController.swift in Sources */,
 				88648583276E277C0064BE93 /* CommentsViewController.swift in Sources */,
 				88403D5B277086BE00496E7D /* Comment.swift in Sources */,
@@ -274,7 +279,7 @@
 				88403D5D2770870700496E7D /* User.swift in Sources */,
 				881C10C82764AD7F00A8FB19 /* CarsViewController.swift in Sources */,
 				881C10C42764AD7F00A8FB19 /* AppDelegate.swift in Sources */,
-				88648585276E4E660064BE93 /* ChatTableViewCell.swift in Sources */,
+				88648585276E4E660064BE93 /* ChatCell.swift in Sources */,
 				881C10C62764AD7F00A8FB19 /* SceneDelegate.swift in Sources */,
 				881C10F427652E2900A8FB19 /* design.swift in Sources */,
 			);
@@ -288,6 +293,7 @@
 			children = (
 				881C10CA2764AD7F00A8FB19 /* Base */,
 				887C60CE279AAF7200915D83 /* en */,
+				88E66458279E912000456072 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

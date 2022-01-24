@@ -32,19 +32,19 @@ class UserInfo{
     }
     func getCars(complation: @escaping (Car)->Void){
         dbStore.collection("Cars")
-        .addSnapshotListener { (querySnapshot, err) in
-            if  err != nil {
-                
-                print("Error getting documents: \(err!)")
-            } else {
-               
-                self.cars.removeAll()
-                for document in querySnapshot!.documents {
-                    let carObj = try! document.data(as: Car.self)
-                    self.cars.append(carObj!)
-                    complation(carObj!)
+            .addSnapshotListener { (querySnapshot, err) in
+                if  err != nil {
+                    
+                    print("Error getting documents: \(err!)")
+                } else {
+                    
+                    self.cars.removeAll()
+                    for document in querySnapshot!.documents {
+                        let carObj = try! document.data(as: Car.self)
+                        self.cars.append(carObj!)
+                        complation(carObj!)
+                    }
                 }
             }
-        }
     }
 }

@@ -62,7 +62,7 @@ class CommentsViewController: UIViewController {
         super.viewDidLoad()
         readMsgs()
         // Do any additional setup after loading the view.
-        tableview.register(UINib(nibName: "CarImageVC", bundle: nil), forCellReuseIdentifier: "bannerid")
+        tableview.register(UINib(nibName: "CarImageCell", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     func sendMsg(){
         var fullname = String ()
@@ -93,7 +93,7 @@ class CommentsViewController: UIViewController {
     func readMsgs(){
         
         ref.child(chatRoom).observe(.childAdded) { snapshot in
-           
+            
             let result=snapshot.value as! Dictionary<String,String>
             var sender=result["sender"]!
             let msg=result["message"]!
@@ -125,14 +125,14 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageVC
+            let  cell = tableView.dequeueReusableCell(withIdentifier: "bannerid", for: indexPath) as! CarImageCell
             cell.bigImage.imageFromURL(imagUrl: photo)
             cell.carDescription.text = carObject.status
             cell.brand.text = carObject.brand
             return cell
         }
         else{
-            let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatTableViewCell
+            let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatCell
             let comment = messages[indexPath.row]
             if comment.userID == userId{
                 cell.changeNameToGray()
@@ -147,10 +147,12 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
         else{  return 120 }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let commitID=messages[indexPath.row]
-//        print(commitID)
+        if indexPath.section == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let showvc = storyboard?.instantiateViewController(withIdentifier: "Connect") as! BigImageVC
+            showvc.link = photo
+            navigationController?.show(showvc, sender: self)
+        }
     }
+    
 }
-
-
-

@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
-    
+    var permission = false
     let dbStore = Firestore.firestore()
     let userId =  Auth.auth().currentUser!.uid
     
@@ -22,10 +22,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var visiblePhoneNumber: UISegmentedControl!
     @IBAction func saveButton(_ sender: Any) {
         
-        if ((firstName.text!.trimmingCharacters(in: .whitespaces) == "" || (firstName.text!.count<3)) &&
-            (lastName.text?.trimmingCharacters(in: .whitespaces) == "") || (lastName.text!.count<3)  &&
-            (phoneProfile.text!.count == 10) || (phoneProfile.text?.trimmingCharacters(in: .whitespaces) == "")){
-            design.useAlert(title: "Error", message: "please chek your info", vc: self)
+        if ((firstName.text!.trimmingCharacters(in: .whitespaces) == "" || (firstName.text!.count<3)) ||
+            (lastName.text?.trimmingCharacters(in: .whitespaces) == "") || (lastName.text!.count<3)  || (phoneProfile.text?.trimmingCharacters(in: .whitespaces) == "") ||
+            (phoneProfile.text!.count != 10)){
+            design.useAlert(title: "Error", message: "Please chek your info \n Phone must be 10 digits only numbers \n Name must be at least 3 characters", vc: self)
             
         }else {
             let newUser = User(uid: userId, firstName: firstName.text!, lastName: lastName.text!, phoneNumber: Int(phoneProfile.text!) ?? 0,showPhone: visiblePhoneNumber.selectedSegmentIndex==0 ? false:true)
@@ -37,7 +37,9 @@ class ProfileViewController: UIViewController {
         }
     }
     override func viewDidLoad() {
-        back.isHidden = true
+        if permission == false {
+            back.isHidden = true
+        }
         super.viewDidLoad()
         save.layer.cornerRadius = 10
         save.layer.borderWidth = 1
@@ -62,7 +64,7 @@ class ProfileViewController: UIViewController {
         }
     }
     @IBAction func backHome(_ sender: Any) {
-        performSegue(withIdentifier: "home", sender: self)
+        navigationController?.popViewController(animated: true)
     }
     @IBOutlet weak var back: UIButton!
     

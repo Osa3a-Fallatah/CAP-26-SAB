@@ -7,12 +7,12 @@
 
 import UIKit
 
-class CarImageVC: UITableViewCell {
+class CarImageCell: UITableViewCell {
     
     @IBOutlet weak var brand: UILabel!
     @IBOutlet weak var carDescription: UILabel!
     @IBOutlet weak var bigImage: UIImageView!
-  
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
