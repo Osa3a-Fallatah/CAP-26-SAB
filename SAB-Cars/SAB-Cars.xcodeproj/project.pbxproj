@@ -34,6 +34,7 @@
 		8865F50F279FDA5D00358812 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 8865F50E279FDA5D00358812 /* FirebaseFirestore */; };
 		8865F511279FDA5D00358812 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8865F510279FDA5D00358812 /* FirebaseFirestoreSwift-Beta */; };
 		8865F513279FDA5D00358812 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8865F512279FDA5D00358812 /* FirebaseStorage */; };
+		8865F51C27A0884E00358812 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8865F51B27A0884E00358812 /* IQKeyboardManagerSwift */; };
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
 		88BB30152777A7F500061D2D /* CarImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB30132777A7F500061D2D /* CarImageCell.swift */; };
 		88BB30162777A7F500061D2D /* CarImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BB30142777A7F500061D2D /* CarImageCell.xib */; };
@@ -64,13 +65,13 @@
 		88403D672771DD2A00496E7D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		88648582276E277C0064BE93 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		88648584276E4E660064BE93 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = ../ChatCell.swift; sourceTree = "<group>"; };
+		8865F52827A0964400358812 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		8865F52A27A0971A00358812 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		8873B52B2785A06E0000F0A3 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		887C60CE279AAF7200915D83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		88BB30132777A7F500061D2D /* CarImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCell.swift; sourceTree = "<group>"; };
 		88BB30142777A7F500061D2D /* CarImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageCell.xib; sourceTree = "<group>"; };
 		88E66455279E842F00456072 /* BigImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BigImageVC.swift; path = ../BigImageVC.swift; sourceTree = "<group>"; };
-		88E66458279E912000456072 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8865F51C27A0884E00358812 /* IQKeyboardManagerSwift in Frameworks */,
 				8865F50D279FDA5D00358812 /* FirebaseDatabaseSwift-Beta in Frameworks */,
 				8865F50F279FDA5D00358812 /* FirebaseFirestore in Frameworks */,
 				8865F511279FDA5D00358812 /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -203,6 +205,7 @@
 				8865F50E279FDA5D00358812 /* FirebaseFirestore */,
 				8865F510279FDA5D00358812 /* FirebaseFirestoreSwift-Beta */,
 				8865F512279FDA5D00358812 /* FirebaseStorage */,
+				8865F51B27A0884E00358812 /* IQKeyboardManagerSwift */,
 			);
 			productName = "SAB-Cars";
 			productReference = 881C10C02764AD7F00A8FB19 /* SAB-Cars.app */;
@@ -235,6 +238,7 @@
 			mainGroup = 881C10B72764AD7F00A8FB19;
 			packageReferences = (
 				8865F507279FDA5D00358812 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				8865F51A27A0884E00358812 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 881C10C12764AD7F00A8FB19 /* Products */;
 			projectDirPath = "";
@@ -295,8 +299,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				881C10CA2764AD7F00A8FB19 /* Base */,
-				887C60CE279AAF7200915D83 /* en */,
-				88E66458279E912000456072 /* ar */,
+				8865F52827A0964400358812 /* en */,
+				8865F52A27A0971A00358812 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -519,6 +523,14 @@
 				kind = branch;
 			};
 		};
+		8865F51A27A0884E00358812 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -551,6 +563,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8865F507279FDA5D00358812 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		8865F51B27A0884E00358812 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8865F51A27A0884E00358812 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

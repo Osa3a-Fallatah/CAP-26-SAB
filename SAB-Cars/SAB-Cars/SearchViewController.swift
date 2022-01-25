@@ -4,7 +4,6 @@
 //
 //  Created by Osama folta on 02/06/1443 AH.
 //
-
 import UIKit
 
 class SearchViewController: UIViewController , UISearchBarDelegate , UICollectionViewDelegate , UICollectionViewDataSource{
@@ -75,8 +74,6 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
                     }
                 }
             }
-                
-            
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize{
@@ -93,4 +90,7 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
         
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
