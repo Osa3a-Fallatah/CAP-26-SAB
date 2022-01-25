@@ -19,9 +19,9 @@
 #### Features
 
 > Free software that is fast and easy to use .
-The data is saved on the Firebase cloud .
+>The data is saved on the Firebase cloud .
 The 
-Compatible with the latest iPhones iOS 15 .
+>Compatible with the latest iPhones iOS 15 .
 
 ##### Tech used    
 - Xcode : this tool provides developers all necessary functions for user interface design, coding, and testing . 
@@ -29,13 +29,13 @@ Compatible with the latest iPhones iOS 15 .
 - Firebase for Backend development platform . 
 
 ##### Note
-If there is a problem, reinstall Firebase SDKs
+>If there is a problem, reinstall Firebase SDKs
 https://github.com/firebase/firebase-ios-sdk .
-FirebaseAuth .
-FirebaseFirestore .
-FirebaseFirestoreSwift .
-FirebaseDatabase .
-FirebaseStorage .
+-FirebaseAuth .
+-FirebaseFirestore .
+-FirebaseFirestoreSwift .
+-FirebaseDatabase .
+-FirebaseStorage .
 
 ```
 THE END:
