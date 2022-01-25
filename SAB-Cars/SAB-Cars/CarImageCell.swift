@@ -10,7 +10,7 @@ import UIKit
 class CarImageCell: UITableViewCell {
     
     @IBOutlet weak var brand: UILabel!
-    @IBOutlet weak var carDescription: UILabel!
+    @IBOutlet weak var carDescription: UITextView!
     @IBOutlet weak var bigImage: UIImageView!
     
     override func awakeFromNib() {

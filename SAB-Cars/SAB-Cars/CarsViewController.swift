@@ -35,18 +35,19 @@ class CarsViewController: UIViewController {
         design.chageColore(self.view)
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        
-        
-        UserInfo.shared.getCars { car in
-            self.cars.append(car)
-            DispatchQueue.main.async { self.table.reloadData() }
-        }
+     
         UserInfo.shared.getUserName { user in
             self.showname.title=("\(user.firstName ) \(user.lastName)")
         }
         
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        cars.removeAll()
+        UserInfo.shared.getCars { car in
+            self.cars.append(car)
+            DispatchQueue.main.async { self.table.reloadData() }
+        }
+    }
 }
 
 extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
