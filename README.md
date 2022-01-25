@@ -25,18 +25,18 @@ The
 Compatible with the latest iPhones iOS 15 .
 
 ##### Tech used    
-- Xcode : this tool provides developers all necessary functions for user interface design, coding, and testing. 
+- Xcode : this tool provides developers all necessary functions for user interface design, coding, and testing . 
 - programming language used (Swift)  fast , efficient and supported by Apple .
-- Firebase for Backend development platform 
+- Firebase for Backend development platform . 
 
 ##### Note
 If there is a problem, reinstall Firebase SDKs
-https://github.com/firebase/firebase-ios-sdk
-FirebaseAuth
-FirebaseFirestore
-FirebaseFirestoreSwift
-FirebaseDatabase
-FirebaseStorage
+https://github.com/firebase/firebase-ios-sdk .
+FirebaseAuth .
+FirebaseFirestore .
+FirebaseFirestoreSwift .
+FirebaseDatabase .
+FirebaseStorage .
 
 ```
 THE END:
