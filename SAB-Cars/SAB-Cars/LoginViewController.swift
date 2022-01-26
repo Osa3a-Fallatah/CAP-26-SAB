@@ -9,13 +9,10 @@ import FirebaseAuth
 import UIKit
 
 class LoginViewController: UIViewController {
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var buttonLayout1: UIButton!
-    
-    @IBAction func logInButton(_ sender: UIButton) {
-        logIn()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +24,11 @@ class LoginViewController: UIViewController {
             let showvc = storyboard?.instantiateViewController(withIdentifier: "homepage") as! CarsViewController
             navigationController?.show(showvc, sender: self)
         }
-        
     }
+    @IBAction func logInButton(_ sender: UIButton) {
+        logIn()
+    }
+    
     func logIn(){
         guard let email = emailTextField.text else {return}
         guard let pass = passwordTextField.text else {return}

@@ -11,23 +11,23 @@ import UIKit
 
 class CommentsViewController: UIViewController {
     
-    @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var textField: UITextField!
-    let userId = Auth.auth().currentUser?.uid
     var chatRoom = String()
     var photo = String()
     var carObject = Car()
+    let userId = Auth.auth().currentUser?.uid
+    var dbStore = Firestore.firestore().collection("users")
+    let ref = Database.database().reference().child("Comments")
+    var messages = [Comment]()
     
-    fileprivate func deleteMessage() {
-        let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler:{(action) in
-            Database.database().reference().child("Comments").child(self.chatRoom).removeValue()
-            self.messages.removeAll()
-            self.tableview.reloadData()
-            
-        }))
-        present(alert, animated: true, completion: nil)
+    @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    
+    override func viewDidLoad() {
+        design.chageColore(self.view)
+        super.viewDidLoad()
+        readMsgs()
+        // Do any additional setup after loading the view.
+        tableview.register(UINib(nibName: "CarImageCell", bundle: nil), forCellReuseIdentifier: "bannerid")
     }
     
     @IBAction func clearChat(_ sender: UIBarButtonItem) {
@@ -53,17 +53,7 @@ class CommentsViewController: UIViewController {
         } else{ sendMsg() }
         
     }
-    var dbStore = Firestore.firestore().collection("users")
-    let ref = Database.database().reference().child("Comments")
-    var messages = [Comment]()
     
-    override func viewDidLoad() {
-        design.chageColore(self.view)
-        super.viewDidLoad()
-        readMsgs()
-        // Do any additional setup after loading the view.
-        tableview.register(UINib(nibName: "CarImageCell", bundle: nil), forCellReuseIdentifier: "bannerid")
-    }
     func sendMsg(){
         var fullname = String ()
         dbStore.whereField("uid", isEqualTo: Auth.auth().currentUser!.uid)
@@ -108,6 +98,17 @@ class CommentsViewController: UIViewController {
             let indexPath = IndexPath(row: self.messages.count - 1, section: 1)
             self.tableview.scrollToRow(at: indexPath, at: .top, animated: true)
         }
+    }
+    fileprivate func deleteMessage() {
+        let alert = UIAlertController(title: " Are You Sure", message: "This action deletes all messages", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler:{(action) in
+            Database.database().reference().child("Comments").child(self.chatRoom).removeValue()
+            self.messages.removeAll()
+            self.tableview.reloadData()
+            
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 

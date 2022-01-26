@@ -9,17 +9,11 @@ import FirebaseAuth
 import UIKit
 
 class RegisterViewController: UIViewController {
-    @IBOutlet weak var emailTextField: UITextField!
+    
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
-    
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var buttonLayout: UIButton!
-    
-    @IBAction func registerButton(_ sender: UIButton) {
-        if passwordTextField.text  == confirmTextField.text {
-            signUp()
-        }else{ design.useAlert(title: "Failed to register", message: "Please check your password", vc: self) }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +23,11 @@ class RegisterViewController: UIViewController {
         buttonLayout.layer.borderWidth = 1
     }
     
+    @IBAction func registerButton(_ sender: UIButton) {
+        if passwordTextField.text  == confirmTextField.text { signUp()
+        }else{ design.useAlert(title: "Failed to register", message: "Please check your password", vc: self)
+        }
+    }
     func signUp(){
         let email = emailTextField.text!
         let pass = passwordTextField.text!

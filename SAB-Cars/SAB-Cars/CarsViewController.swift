@@ -14,28 +14,14 @@ class CarsViewController: UIViewController {
     var cars = [Car]()
     let dbStore = Firestore.firestore()
     let db = Database.database().reference()
-    
     @IBOutlet weak var showname: UIBarButtonItem!
     @IBOutlet weak var table: UITableView!
-    @IBAction func signOut(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
     
-    @IBAction func updateProfile(_ sender: Any) {
-        let showvc = storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
-        showvc.permission = true
-        navigationController?.show(showvc, sender: self)
-    }
     override func viewDidLoad() {
         design.chageColore(self.view)
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-     
+        
         UserInfo.shared.getUserName { user in
             self.showname.title=("\(user.firstName ) \(user.lastName)")
         }
@@ -47,6 +33,20 @@ class CarsViewController: UIViewController {
             self.cars.append(car)
             DispatchQueue.main.async { self.table.reloadData() }
         }
+    }
+    
+    @IBAction func signOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    @IBAction func updateProfile(_ sender: Any) {
+        let showvc = storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
+        showvc.permission = true
+        navigationController?.show(showvc, sender: self)
     }
 }
 

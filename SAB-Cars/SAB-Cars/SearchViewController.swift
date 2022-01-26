@@ -6,20 +6,28 @@
 //
 import UIKit
 
-class SearchViewController: UIViewController , UISearchBarDelegate , UICollectionViewDelegate , UICollectionViewDataSource{
-    
-    @IBOutlet weak var filterSeqment: UISegmentedControl!
-    
-    @IBOutlet weak var collection: UICollectionView!
+class SearchViewController: UIViewController , UISearchBarDelegate , UICollectionViewDelegate , UICollectionViewDataSource {
+
     var cars = [Car]()
+    @IBOutlet weak var filterSeqment: UISegmentedControl!
+    @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var search: UISearchBar!
+    @IBOutlet weak var locatin: UILabel!
     @IBOutlet weak var status: UILabel!
-    
-    @IBOutlet weak var km: UILabel!
+    @IBOutlet weak var price: UILabel!
     @IBOutlet weak var fuel: UILabel!
     @IBOutlet weak var gear: UILabel!
     @IBOutlet weak var year: UILabel!
-    @IBOutlet weak var locatin: UILabel!
-    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var km: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        search.delegate = self
+        collection.delegate = self
+        design.chageColore(view.self)
+        // Do any additional setup after loading the view.
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cars.count
     }
@@ -29,21 +37,20 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
         cell.image.imageFromURL(imagUrl: cars[indexPath.item].carImage)
         cell.lablText.text = cars[indexPath.row].brand
         cell.lablText.layer.cornerRadius = 5
-        updateInfo(carObject: cars[indexPath.row])
+        
         return cell
     }
-    
-   
-    override func viewDidLoad() {
+    func updateInfo(carObject:Car){
+        price.text = String(carObject.price)
+        locatin.text = carObject.location
+        gear.text = carObject.gearbox
+        status.text = carObject .status
+        km.text = String(carObject.kilometeRreading)
+        year.text = carObject.year
+        fuel.text = carObject.gasType
         
-        super.viewDidLoad()
-        search.delegate = self
-        design.chageColore(view.self)
-        // Do any additional setup after loading the view.
     }
-    
-    @IBOutlet weak var search: UISearchBar!
-    
+   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         collection.reloadData()
         self.cars.removeAll()
@@ -76,21 +83,16 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
             }
         }
     }
-    func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, sizeForItemAt: IndexPath) -> CGSize{
-        return CGSize(width: collection.frame.width, height: collection.frame.height)
-    }
-    func updateInfo(carObject:Car){
-        price.text = String(carObject.price)
-        locatin.text = carObject.location
-        gear.text = carObject.gearbox
-        status.text = carObject .status
-        km.text = String(carObject.kilometeRreading)
-        year.text = carObject.year
-        fuel.text = carObject.gasType
-        
-    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+}
+extension SearchViewController:UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collection.frame.width, height: 280)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        updateInfo(carObject:cars[indexPath.row])
     }
 }

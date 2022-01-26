@@ -14,14 +14,28 @@ class ProfileViewController: UIViewController {
     let dbStore = Firestore.firestore()
     let userId =  Auth.auth().currentUser!.uid
     
+    @IBOutlet weak var visiblePhoneNumber: UISegmentedControl!
+    @IBOutlet weak var phoneProfile: UITextField!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var phoneProfile: UITextField!
     @IBOutlet weak var save: UIButton!
+    @IBOutlet weak var back: UIButton!
     
-    @IBOutlet weak var visiblePhoneNumber: UISegmentedControl!
+    override func viewDidLoad() {
+        if permission == false {
+            back.isHidden = true
+        }
+        super.viewDidLoad()
+        save.layer.cornerRadius = 10
+        save.layer.borderWidth = 1
+        self.navigationItem.hidesBackButton = true
+        getProfile()
+        // Do any additional setup after loading the view.
+    }
+    @IBAction func backHome(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     @IBAction func saveButton(_ sender: Any) {
-        
         if ((firstName.text!.trimmingCharacters(in: .whitespaces) == "" || (firstName.text!.count<3)) ||
             (lastName.text?.trimmingCharacters(in: .whitespaces) == "") || (lastName.text!.count<3)  || (phoneProfile.text?.trimmingCharacters(in: .whitespaces) == "") ||
             (phoneProfile.text!.count != 10)){
@@ -35,17 +49,6 @@ class ProfileViewController: UIViewController {
             
             performSegue(withIdentifier: "home", sender: self)
         }
-    }
-    override func viewDidLoad() {
-        if permission == false {
-            back.isHidden = true
-        }
-        super.viewDidLoad()
-        save.layer.cornerRadius = 10
-        save.layer.borderWidth = 1
-        self.navigationItem.hidesBackButton = true
-        getProfile()
-        // Do any additional setup after loading the view.
     }
     
     func getProfile(){
@@ -63,10 +66,6 @@ class ProfileViewController: UIViewController {
             
         }
     }
-    @IBAction func backHome(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    @IBOutlet weak var back: UIButton!
     
 }
 

@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
     var camera = UIImagePickerController()
     var dropList = UIPickerView()
     var imgUrl = String()
@@ -18,8 +19,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     let userId = Auth.auth().currentUser?.uid
     let dbStore = Firestore.firestore()
     var newCar = Car()
-    /*MARK: reference Type as Property Field in Firebase
-     MARK: dbStore.collection("Ca").addDocument(data: ["mssege":dbStore.collection("Msg").document()]*/
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var carimage: UIImageView!
@@ -31,6 +30,17 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
     @IBOutlet weak var status: UITextView!
     @IBOutlet weak var gasType: UISegmentedControl!
     @IBOutlet weak var gearbox: UISegmentedControl!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        design.chageColore(view)
+        camera.delegate = self
+        dropList.delegate=self
+        dropList.dataSource=self
+        brand.inputView=dropList
+        // Do any additional setup after loading the view.
+        getCar()
+    }
     
     @IBAction func forPicker(_ sender: UIGestureRecognizer) {
         self.view.endEditing(true)
@@ -60,16 +70,6 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         }else{design.useAlert(title: "Error", message: "Please Check Your Info", vc: self)}
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        design.chageColore(view)
-        camera.delegate = self
-        dropList.delegate=self
-        dropList.dataSource=self
-        brand.inputView=dropList
-        // Do any additional setup after loading the view.
-        getCar()
-    }
     
     fileprivate func extractedFunc(_ data: Data?) {
         self.view.alpha = 0.4
@@ -141,8 +141,8 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         price.text=String(newCar.price)
         kmReading.text=String(newCar.kilometeRreading)
     }
-    var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","Gmc","Audi"
-              ,"Subaru","Rolls-royce", "Porsche","Bmw","Volvo","Lincoln","Maserati"
+    var List=["Chrysler","Honda","Mercedes-benz","Ram","Ford","GMC","Audi"
+              ,"Subaru","Rolls-royce", "Porsche","BMW","Volvo","Lincoln","Maserati"
               ,"Infiniti", "Fiat","Dodge","Bentley","Chevrolet","Land-rover","Mitsubishi"
               ,"Volkswagen","Toyota","Jeep","Hyundai","Cadillac","Lexus","Kia","Mazda","Nissan","Genesis","Isuzu","Porsche","Suzuki","Hummer","Mercury", "Geely", "Daihatsu","Jaguar" ,"Bentley" ,"Peugeot", "Seat", "Chery", "Citroen","Ferrari", "Skoda", "Opel","BYD" ,"FAW", "GreatWall", "GAC", "Haval", "Tesla", "Baic", "JAC", "McLaren", "MAXUS","MG"]
 }
@@ -156,10 +156,10 @@ extension AddCarViewController :UIPickerViewDelegate,UIPickerViewDataSource{
         List.count
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        brand.text! = List[row]
+        brand.text! = List.sorted()[row]
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return List[row]
+        return List.sorted()[row]
     }
     func savedDocAlert(){
         let alert = UIAlertController(title: "Successfully Added", message: "", preferredStyle: UIAlertController.Style.alert)

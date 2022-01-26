@@ -10,15 +10,20 @@ import Firebase
 import UIKit
 
 class UserCommentsVC : UIViewController ,UITableViewDelegate,UITableViewDataSource  {
+    
     let db = Database.database().reference()
     let userId=Auth.auth().currentUser?.uid
     var messages = [Comment]()
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewDidLoad() {
+        readMsgs()
+        design.chageColore(view)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         messages.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellA", for: indexPath)
         cell.textLabel?.text=messages[indexPath.row].getmessage()
@@ -40,10 +45,6 @@ class UserCommentsVC : UIViewController ,UITableViewDelegate,UITableViewDataSour
         }
     }
     
-    override func viewDidLoad() {
-        readMsgs()
-        design.chageColore(view)
-    }
     func readMsgs(){
         
         db.child("Comments").observe(.childAdded) {snapshot , err in
@@ -88,6 +89,11 @@ class UserCarsVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     var cars = [Car]()
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewDidLoad() {
+        design.chageColore(view)
+        getInfo()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cars.count
     }
@@ -108,11 +114,6 @@ class UserCarsVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
             if self.cars.count==0{self.tableView.alpha=0.7}
             DispatchQueue.main.async { self.tableView.reloadData() }
         }
-    }
-    override func viewDidLoad() {
-        design.chageColore(view)
-        getInfo()
-        
     }
     
 }
