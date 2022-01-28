@@ -50,14 +50,14 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
         fuel.text = carObject.gasType
         
     }
-   
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         collection.reloadData()
         self.cars.removeAll()
         //0 brand ,1 year ,2 location
         UserInfo.shared.getCars { car in
             if self.filterSeqment.selectedSegmentIndex == 0{
-                if car.brand.lowercased().contains(searchText.lowercased()) {
+                if car.brand.lowercased().starts(with:searchBar.text!.lowercased()) {
                     DispatchQueue.main.async {
                         self.cars.append(car)
                         self.collection.reloadData()
@@ -65,7 +65,7 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
                     }
                 }
             }else if self.filterSeqment.selectedSegmentIndex == 1{
-                if car.year.contains(searchText) {
+                if car.year.starts(with:searchBar.text!.lowercased()) {
                     DispatchQueue.main.async {
                         self.cars.append(car)
                         self.collection.reloadData()
@@ -73,7 +73,7 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
                     }
                 }
             }else{
-                if car.location.lowercased().contains(searchText.lowercased()) {
+                if car.location.lowercased().starts(with:searchBar.text!.lowercased()) {
                     DispatchQueue.main.async {
                         self.cars.append(car)
                         self.collection.reloadData()
@@ -82,9 +82,6 @@ class SearchViewController: UIViewController , UISearchBarDelegate , UICollectio
                 }
             }
         }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }
@@ -93,6 +90,26 @@ extension SearchViewController:UICollectionViewDelegateFlowLayout{
         return CGSize(width: collection.frame.width, height: 280)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        updateInfo(carObject:cars[indexPath.row])
+        let showvc = storyboard?.instantiateViewController(withIdentifier: "Connect") as! BigImageVC
+        showvc.link = cars[indexPath.row].carImage
+        navigationController?.show(showvc, sender: self)
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 1) {
+
+            self.animationText(lable: self.price)
+            self.animationText(lable: self.locatin)
+            self.animationText(lable: self.km)
+            self.animationText(lable: self.year)
+            self.animationText(lable: self.fuel)
+            self.animationText(lable: self.status)
+            self.animationText(lable: self.gear)
+            self.updateInfo(carObject:self.cars[indexPath.row])
+        }
+    }
+    func animationText(lable:UILabel){
+        let x = lable.frame.width*2
+        let y = lable.frame.height*2
+        lable.frame.size = CGSize(width: x, height: y)
     }
 }

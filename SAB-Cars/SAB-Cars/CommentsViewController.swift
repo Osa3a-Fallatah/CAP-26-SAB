@@ -31,19 +31,11 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func clearChat(_ sender: UIBarButtonItem) {
-        let dbStore = Firestore.firestore().collection("Cars")
-        
-        dbStore.getDocuments { snapshot, error in
-            for doc in snapshot!.documents {
-                let carDoc = doc.data()
-                if let uid = carDoc["userID"] as? String {
-                    if (Auth.auth().currentUser?.uid == uid) {
+        if carObject.userID == Auth.auth().currentUser?.uid{
                         print ("Can Delete")
                         self.deleteMessage()
-                        
-                    }
-                }
-            }
+        }else{
+            sender.isEnabled = false
         }
         
     }
@@ -95,8 +87,7 @@ class CommentsViewController: UIViewController {
             
             self.messages.append(package)
             self.tableview.reloadData()
-            let indexPath = IndexPath(row: self.messages.count - 1, section: 1)
-            self.tableview.scrollToRow(at: indexPath, at: .top, animated: true)
+           
         }
     }
     fileprivate func deleteMessage() {
@@ -138,7 +129,7 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
             if comment.userID == userId{
                 cell.changeNameToGray()
             }
-            cell.setData(name: comment.getSender(), msg: comment.getmessage(), date: comment.getdate())
+            cell.setData(name: comment.getSender(), msg: " \(comment.getmessage())", date: comment.getdate())
             
             return cell
         }
