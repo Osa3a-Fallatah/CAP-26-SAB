@@ -32,7 +32,7 @@ class UserInfo{
     }
     func getCars(complation: @escaping (Car)->Void){
         dbStore.collection("Cars")
-            .addSnapshotListener { (querySnapshot, err) in
+            .getDocuments { (querySnapshot, err) in
                 if  err != nil {
                     
                     print("Error getting documents: \(err!)")

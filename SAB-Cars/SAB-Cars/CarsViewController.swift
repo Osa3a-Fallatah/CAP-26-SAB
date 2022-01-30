@@ -94,7 +94,7 @@ extension CarsViewController:UITableViewDelegate,UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
             self.dbStore.collection("Cars").document(itemToDelete.id!).delete()
             self.db.child("Comments").child(itemToDelete.id!).removeValue()
-            cars.removeAll()
+//            cars.removeAll()
             tableView.reloadData()
         }
     }

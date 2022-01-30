@@ -38,6 +38,7 @@
 		88902D9C27678BDA00190883 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902D9B27678BDA00190883 /* ProfileViewController.swift */; };
 		88BB30152777A7F500061D2D /* CarImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB30132777A7F500061D2D /* CarImageCell.swift */; };
 		88BB30162777A7F500061D2D /* CarImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BB30142777A7F500061D2D /* CarImageCell.xib */; };
+		88D1C6D327A5E52500C3833F /* OwnerCarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D1C6D227A5E52500C3833F /* OwnerCarCell.swift */; };
 		88E66456279E842F00456072 /* BigImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E66455279E842F00456072 /* BigImageVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		88902D9B27678BDA00190883 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		88BB30132777A7F500061D2D /* CarImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarImageCell.swift; sourceTree = "<group>"; };
 		88BB30142777A7F500061D2D /* CarImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarImageCell.xib; sourceTree = "<group>"; };
+		88D1C6D227A5E52500C3833F /* OwnerCarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerCarCell.swift; sourceTree = "<group>"; };
 		88E66455279E842F00456072 /* BigImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BigImageVC.swift; path = ../BigImageVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 		88648586276E4EA20064BE93 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				88D1C6D227A5E52500C3833F /* OwnerCarCell.swift */,
 				881C10EC2764E0A000A8FB19 /* TableViewCell.swift */,
 				88BB30132777A7F500061D2D /* CarImageCell.swift */,
 				88BB30142777A7F500061D2D /* CarImageCell.xib */,
@@ -272,6 +275,7 @@
 				881C10EE2764E0A000A8FB19 /* TableViewCell.swift in Sources */,
 				881C10E92764E00100A8FB19 /* AddCarViewController.swift in Sources */,
 				882C235B27863104007BD81D /* SearchCell.swift in Sources */,
+				88D1C6D327A5E52500C3833F /* OwnerCarCell.swift in Sources */,
 				88BB30152777A7F500061D2D /* CarImageCell.swift in Sources */,
 				882C235D2786312C007BD81D /* SearchViewController.swift in Sources */,
 				88E66456279E842F00456072 /* BigImageVC.swift in Sources */,

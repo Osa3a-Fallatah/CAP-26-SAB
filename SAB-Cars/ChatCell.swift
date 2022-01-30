@@ -21,7 +21,7 @@ class ChatCell: UITableViewCell {
         viewshap.layer.cornerRadius = 20
     }
     func changeNameToGray(){
-        lableForName.textColor = .lightGray
+        lableForName.textColor = .black
         viewshap.backgroundColor = UIColor(named: "viewDownColor")
     }
 }

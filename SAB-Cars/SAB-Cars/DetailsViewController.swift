@@ -47,8 +47,8 @@ class UserCommentsVC : UIViewController ,UITableViewDelegate,UITableViewDataSour
     
     func readMsgs(){
         
-        db.child("Comments").observe(.childAdded) {snapshot , err in
-            print("children" ,(err ?? "nil") as String)
+        db.child("Comments").observe(.childAdded) {snapshot , keys in
+//            print("children" ,(keys ?? "nil") as String);print(snapshot.key)
             let keys=snapshot.key
             self.db.child("Comments").child(keys).observe(.childAdded ){ snapshot in
                 
@@ -99,10 +99,10 @@ class UserCarsVC: UIViewController ,UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellB", for: indexPath)
-        cell.textLabel?.text=cars[indexPath.row].brand
-        cell.detailTextLabel?.text="Price: \(cars[indexPath.row].price)"
-        cell.imageView?.imageFromURL(imagUrl: cars[indexPath.row].carImage)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellB", for: indexPath) as! OwnerCarCell
+        cell.labl1.text=cars[indexPath.row].brand
+        cell.labl2.text="Price: \(cars[indexPath.row].price)"
+        cell.imageview.imageFromURL(imagUrl: cars[indexPath.row].carImage)
         // cell.imageView?.frame = CGRect(x: 10,y: 0,width: 40,height: 40)
         return cell
     }

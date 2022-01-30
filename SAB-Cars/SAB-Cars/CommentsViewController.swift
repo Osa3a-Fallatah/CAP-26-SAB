@@ -125,10 +125,12 @@ extension CommentsViewController :UITableViewDelegate ,UITableViewDataSource{
         }
         else{
             let cell = tableview.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatCell
-            let comment = messages[indexPath.row]
+            var comment = messages[indexPath.row]
             if comment.userID == userId{
                 cell.changeNameToGray()
             }
+            if carObject.userID == messages[indexPath.row].userID {
+                comment.sender = "Owner: \(comment.sender)" }
             cell.setData(name: comment.getSender(), msg: " \(comment.getmessage())", date: comment.getdate())
             
             return cell
