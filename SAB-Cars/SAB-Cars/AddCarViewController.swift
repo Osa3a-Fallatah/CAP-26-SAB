@@ -38,11 +38,12 @@ class AddCarViewController: UIViewController,UIImagePickerControllerDelegate,UIN
         dropList.delegate=self
         dropList.dataSource=self
         brand.inputView=dropList
+        _ = UITapGestureRecognizer(target: self, action: #selector(forPicker))
         // Do any additional setup after loading the view.
         getCar()
     }
     
-    @IBAction func forPicker(_ sender: UIGestureRecognizer) {
+    @objc func forPicker(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     

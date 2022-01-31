@@ -28,10 +28,14 @@ class CarsViewController: UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
+        // isUserInteractionDisable to give the arry time to be full
+        self.view.isUserInteractionEnabled = false
         cars.removeAll()
         UserInfo.shared.getCars { car in
             self.cars.append(car)
             DispatchQueue.main.async { self.table.reloadData() }
+            print(self.cars.count)
+            self.view.isUserInteractionEnabled = true
         }
     }
     

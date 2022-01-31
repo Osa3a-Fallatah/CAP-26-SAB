@@ -173,8 +173,8 @@
 		88648588276E4F580064BE93 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				882C235C2786312C007BD81D /* SearchViewController.swift */,
 				88E66455279E842F00456072 /* BigImageVC.swift */,
+				882C235C2786312C007BD81D /* SearchViewController.swift */,
 				881C10C72764AD7F00A8FB19 /* CarsViewController.swift */,
 				881C10E82764E00100A8FB19 /* AddCarViewController.swift */,
 				88648582276E277C0064BE93 /* CommentsViewController.swift */,
